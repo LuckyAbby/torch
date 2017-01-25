@@ -1,0 +1,5 @@
+# 忽略名为 test.md 的文件
+test.md
+
+# 忽略 IDE 配置目录
+.idea
