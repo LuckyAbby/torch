@@ -61,7 +61,6 @@ router.post('/login',function(req,res,next) {
       }
       message = encodeURI('密码错误');
       return res.redirect(`/index?message=${message}`);
-    // else if()
     })
   })
 });
@@ -92,31 +91,15 @@ router.post('/reset',function(req,res,next){
         var newPassword=result[0].id_card.substring(result[0].id_card.length-6,result[0].id_card.length)
         var update_sql="update login set password='"+newPassword+"'"+"where student_id=?";
         connection.query(update_sql,[student_id],function(errQuery,result) {
-          // 这里的逻辑是：
-          // 如果query发生错误，则调用next，并终止代码执行
-          // 否则返回json
+
           if(errQuery) {
             console.error('query error: ', errConn);
-            // 这里使用 return 来终止代码执行
-            //return next(errQuery);
-
-            // 上面的代码相当于
             next(errQuery);
-            return ; // return true; / return false; 都可以
+            return ;
           }
-          // 由于第105行有return  所以这里不需要 else 了
-          // 因为只要98行的if条件成立了，就永远不会执行到这里
-          // 因为if里面第105行终止了程序执行
           res.json({
             code:0
           });
-          // 而这后面没有其他代码需要执行了，所以resjson 前面可以有return也可以没有
-          // 有return 就类似于：
-          //       res.json(...); return ;
-          //       return res.json(...);
-          //       res.json(...); return true;
-          //       res.json(...); return false;
-          //  这几个都是等效的
         });
       }
       else {
