@@ -1,3 +1,4 @@
+//封装函数
 function $(id) {
   return document.getElementById(id);
 }
@@ -10,6 +11,27 @@ var lost_cancle=$('lost_cancle');
 var lost_submit=$('lost_submit');
 var student_number=$('student_number');
 var password=$('password');
+var back_btn=$('back_btn');
+
+
+//封装绑定事件的函数
+function addEventHandler(element,type,handler) {
+  //DOM2级方法
+  if(element.addEventHandler) {
+    element.addEventHandler(type,handler,false);
+  }
+  //兼容IE
+  else if(element.attachEvent) {
+    element.attachEvent("on"+type,handler);
+  }
+  //DOM0级方法
+  else {
+    element["on"+type]=handler;
+  }
+}
+
+
+//点击忘记密码之后登陆框隐藏
 function forgetPassword() {
     log_in.style.display='none';
 		lost_pass.style.display='block';
@@ -19,6 +41,9 @@ function forgetPassword() {
 		$('sid').value='';
 		$('idcard').value='';
 }
+
+
+//浏览器兼容
 function checkBrowser() {
 		if(navigator.vendor==''&&navigator.userAgent.indexOf('Firefox')==-1||navigator.vendor==undefined){
 			$('ieCore').style.display='block';
@@ -26,12 +51,18 @@ function checkBrowser() {
 			$('ieCore').style.display='none';
 		}
 	}
+
+
+  //重置密码时候的点击取消
   function backLogin() {
   		log_in.style.display='block';
   		lost_pass.style.display='none';
   		reset_success.style.display='none';
       $('loginTip').innerHTML='';
   	}
+
+
+    //以浏览器兼容形式初始Ajax
   function initAjax() {
     var xmlHttp=false;
     if(window.XMLHttpRequest)
@@ -49,6 +80,9 @@ function checkBrowser() {
     }
     return xmlHttp;
    }
+
+
+   //重置密码
    function resetPassword() {
     var student_name=$('user_name').value;
     var student_id=$('sid').value;
@@ -58,23 +92,19 @@ function checkBrowser() {
        student_id:student_id,
        id_card:id_card
      };
-    //  console.log('data:'+data.student_id);
       var xmlHttp=initAjax();
       xmlHttp.open("post","/reset",true);
       xmlHttp.onreadystatechange=function() {
         if(xmlHttp.readyState===4) {
           if(xmlHttp.status===200) {
             var obj=JSON.parse(xmlHttp.responseText);
-            // console.log(JSON.parse(xmlHttp.responseText)["code"]);
             if(obj["code"]===0) {
               lost_pass.style.display='none';
 					    reset_success.style.display='block';
             }
             else {
               $('mess').innerHTML='信息不匹配，请重新填写';
-              // console.log("aaa");
             }
-            // console.log("bbb");
             student_number.value='';
 					password.value='';
 					student_name='';
@@ -86,7 +116,12 @@ function checkBrowser() {
       xmlHttp.setRequestHeader("Content-Type","application/json");
       xmlHttp.send(JSON.stringify(data));
     }
-  window.onload=checkBrowser;
-  forget_btn.onclick=forgetPassword;
-  lost_submit.onclick=resetPassword;
-  lost_cancle.onclick=backLogin;
+
+
+    window.onload=function() {
+     checkBrowser();
+      addEventHandler(forget_btn,"click",forgetPassword);
+      addEventHandler(lost_submit,"click",resetPassword);
+      addEventHandler(lost_cancle,"click",backLogin);
+      addEventHandler(back_btn,"click",backLogin);
+    };
