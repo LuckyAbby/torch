@@ -1,0 +1,150 @@
+body,div,p,input{
+  padding: 0px;
+  margin: 0px;
+}
+body {
+  font-size: 14px;
+  font-family: "微软雅黑",Helvetica, Arial, sans-serif;
+}
+#backgorund {
+  width: 100%;
+	min-width: 850px;
+}
+#log_in,#lost_pass,#reset_success{
+  position:absolute;
+  width: 300px;
+  height: 200px;
+  top: 300px;
+  right: 20px;
+  background-image: url(../images/login/login_background.jpg);
+
+  background: rgba(255,255,255,0.8);
+}
+#log_in:hover {
+	background: white;
+}
+.log {
+  font-size: 16px;
+  margin: 10px 0px 0px 20px;
+}
+#loginTip {
+  padding: 10px;
+  text-align: center;
+  color:red;
+}
+.put_in {
+	border: 1px solid rgb(0,114,172);
+	width: 250px;
+	height: 38px;
+	background: transparent;
+	margin-left: 20px;
+  margin-bottom: 10px;
+}
+.put_in input{
+	background: transparent;
+	border: none;
+	width: 205px;
+	height: 36px;
+	position: relative;
+	top:-15px;
+}
+.button {
+  background: url(../images/login/u18.png);
+	border :none;
+	height: 27px;
+	width: 63px;
+	margin: 0px 0 0 113px;
+	color: white;
+}
+#submit_btn {
+  margin-left:60px;
+}
+#forget_btn {
+  margin-left: 20px;
+  margin-right: 60px;
+}
+#footer{
+	/*position: absolute;
+	bottom: -5px;
+	z-index: 900;*/
+  font-size: 13px;
+  line-height: 2em;
+	width: 100%;
+	padding-top: 15px;
+  text-align: center;
+
+}
+#lost_pass{
+	display: none;
+}
+#lost_pass input[type='text']{
+	width:180px;
+	height: 22px;
+	float:right;
+	margin-right:20px;
+  margin-top: -3px;
+	border:1px solid #30abc1;
+}
+#lost_pass input[type='button']{
+	width:60px;
+	height: 25px;
+	border-radius: 5px;
+	border:1px solid #30abc1;
+	margin: 10px 20px;
+}
+#lost_pass input[type='button']:hover{
+	background: #30abc1;
+}
+#lost_pass span{
+	width: 80px;
+	margin-left: 30px;
+}
+#lost_pass .lost_p{
+	margin-top:10px;
+}
+#mess{
+  width: 300;
+  height: 20px;
+	color: red;
+  margin-top: 5px;
+  text-align: center;
+}
+#reset_success{
+	display: none;
+	font-size: 14px;
+	text-align: center;
+}
+#reset_success .p1{
+	margin-top: 60px;
+}
+#reset_success .p2{
+	margin-top: 20px;
+	color: rgb(252,79,8);
+}
+#reset_success input[type='button']{
+	width:120px;
+	height: 26px;
+	border-radius: 5px;
+	border:1px solid #30abc1;
+	background: rgb(30,140,190);
+	margin-top: 40px;
+	color: white;
+}
+#ieCore{
+	position: absolute;
+	z-index: 1500;
+	width: 100%;
+	height: 100%;
+	opacity: 0.9;
+	filter:alpha(opacity=90);
+	background: rgb(100,100,100);
+	text-align: center;
+	display: none;
+}
+#ieCore span{
+	display: inline-block;
+	margin: 200px 200px;
+	font-size: 40px;
+	line-height: 50px;
+	color: yellow;
+}
