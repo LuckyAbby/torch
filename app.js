@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 var myConnection = require('express-myconnection');
+var session=require('express-session');
 var config = require('./config/config');
 
 var index = require('./routes/index');
@@ -19,6 +20,14 @@ var dbOptions = {
   port: config.db.port,
   database: config.db.database,
 };
+
+var sessionOption = {
+  secret: 'abcdefghgyftdrytdty78',
+  cookie: { maxAge: 60000 * 60 * 24 * 30 },
+  name: 'express.sid',
+  resave: false,
+  saveUninitialized: true,
+};
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -31,6 +40,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(myConnection(mysql, dbOptions, 'single'));
+app.use(session(sessionOption));
 
 app.use('/', index);
 app.use('/users', users);
