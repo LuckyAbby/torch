@@ -1,0 +1,75 @@
+     a{
+				text-decoration: none;
+			}
+			#main{
+				padding-bottom:40px;
+			}
+			/*左边导航栏*/
+			#aside .left-first{
+				position: absolute;
+				left: 80px;
+				top: 470px;
+			}
+			#aside .left-second{
+				position: absolute;
+				left: 80px;
+				top: 690px;
+			}
+			#aside .left-third{
+				position: absolute;
+				left: 80px;
+				top: 910px;
+			}
+			/*文章主体部分*/
+			.topimg{
+				width: 1000px;
+				height: 327px;
+			}
+			.part{
+				border: 1px solid rgb(0,114,172);
+				width: 575px;
+				height: 160px;
+				margin-top: 40px;
+				padding: 5px 10px;
+				background: white;
+			}
+			.part ul{
+				list-style: none;
+				width: 390px;
+				height: 195px;
+				float: left;
+			}
+			.part ul li{
+				font-size: 16px;
+				border-bottom: 1px dashed rgb(160,200,221);
+				margin: 10px 0 10px 10px;
+			}
+			.part ul li a{
+				color: rgb(94,94,94);
+				margin-left: -9px;
+			}
+			.part ul li a:hover{
+				text-decoration: underline;
+			}
+			.part img{
+				height: 147px;
+				width: 162px;
+				float: right;
+				margin-top: 10px;
+				margin-right: 10px;
+			}
+			/*右侧栏目*/
+			.right{
+				left: 851px;
+			}
+
+			.right-first{
+				top: 390px;
+
+			}
+			.right-second{
+				top:620px;
+			}
+			.right-thrid{
+				top:850px;
+      }
