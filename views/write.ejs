@@ -2,45 +2,66 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>写文章</title>
+    <link rel="stylesheet" href="/stylesheets/base.css" media="screen">
+    <link rel="stylesheet" href="/stylesheets/write.css" media="screen" title="no title">
   </head>
   <body>
     <!--导航栏信息 -->
     <% include _nav.ejs %>
-    <div class="tit"><span>标题</span> <input type="text" name="art_title" id='art_title' maxlength='30'  required value="<?= $art_title;?>" />
-				<span class="star">*</span></div>
-				<div class="tit">
-					<span>分类</span>
-					<select name="type"  id="type"  required >
-						<option>请选择</option>
-						<option>学子心声</option>
-						<optgroup label="求职">
-							<option value="求职实习信息">实习信息</option>
-							<option value="求职经验">求职经验</option>
-							<option value="求职技巧">求职技巧</option>
-							<option value="求职其他">其他</option>
-						</optgroup>
-						<optgroup label="出国">
-							<option value="出国之路">出国之路</option>
-							<option value="出国课程专业">课程专业</option>
-							<option value="出国其他">其他</option>
-						</optgroup>
-						<optgroup label="读研">
-							<option value="读研考研经验">考研经验</option>
-							<option value="读研保研经验">保研经验</option>
-							<option value="读研真题回忆">真题回忆</option>
-							<option value="读研其他">其他</option>
-						</optgroup>
-            </select>
-            <span class="star">*</span>
-        </div>
-        <div class="main-article">
-          <textarea name="textarea" id="textarea" ></textarea>
-        </div>
-        <div class="button">
-          <input type="button"  value="提交">
-          <input type="button"  value="清空">
-        </div>
+    <form  action="/users/write" method="post" id="main">
+      <div id="container">
+        <div class="tit"><span>标题</span> <input type="text" name="art_title" id='art_title' maxlength='30'  required value="" />
+            <span class="star">*</span></div>
+            <div class="tit">
+              <span>分类</span>
+              <select name="type"  id="type"  required >
+                <!-- <option>请选择</option> -->
+                <option>学子心声</option>
+                <optgroup label="求职">
+                  <option value="求职实习信息">实习信息</option>
+                  <option value="求职经验">求职经验</option>
+                  <option value="求职技巧">求职技巧</option>
+                  <option value="求职其他">其他</option>
+                </optgroup>
+                <optgroup label="出国">
+                  <option value="出国之路">出国之路</option>
+                  <option value="出国课程专业">课程专业</option>
+                  <option value="出国其他">其他</option>
+                </optgroup>
+                <optgroup label="读研">
+                  <option value="读研考研经验">考研经验</option>
+                  <option value="读研保研经验">保研经验</option>
+                  <option value="读研真题回忆">真题回忆</option>
+                  <option value="读研其他">其他</option>
+                </optgroup>
+                <option>比赛</option>
+                <option>新闻</option>
+                <option>公告</option>
+                </select>
+                <span class="star">*</span>
+            </div>
+            <div class="main-article">
+              <textarea name="textarea" id="textarea" ></textarea>
+            </div>
+            <div id="buttonContainer">
+              <input type="submit"  value="提交" id="submit_btn" class="button">
+              <input type="button"  value="清空" id="claer_btn" class="button">
+            </div>
+      </div>
+    </form>
         <% include _footer.ejs %>
+        <script>
+        function save() {
+          var message='<%= message %>';
+          if(message==="保存成功") {
+            alert("文章已经保存成功！");
+          }
+        }
+        window.onload=function() {
+          save();
+        }
+
+        </script>
   </body>
 </html>
