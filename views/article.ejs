@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>文章</title>
+    <link rel="stylesheet" href="/stylesheets/base.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/stylesheets/list.css" media="screen" title="no title">
+  </head>
+  <body>
+    <!--导航栏信息 -->
+    <% include _nav.ejs %>
+    <div id="main">
+    <h1><%= article.article_title %></h1>
+    <div id="article_message"> hhh  </div>
+    <div class="">
+    <%= article.article_content %>
+    </div>
+   </div>
+    <!--右边部分 -->
+    <% include _right.ejs %>
+    <div id="none" style="display:none"></div>
+    <!-- footer部分 -->
+    <% include _footer.ejs %>
+  </body>
+</html>

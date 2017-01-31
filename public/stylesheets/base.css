@@ -141,12 +141,6 @@ a:hover{
 }
 /*文章主体部分*/
 #main{
-	/*position: absolute;
-
-	min-height: 100%;
-	left: 180px;
-	top: 53px;
-	border-left: 1px solid rgb(0,114,172);*/
 	float: left;
 	min-height: 750px;
 	margin-left: 180px;

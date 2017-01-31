@@ -10,14 +10,9 @@ router.get('/', function(req, res, next) {
 router.get('/index', function(req, res, next) {
   const message = req.query.message;
   res.render('index', {
-    title: 'Express',
+    title: '登陆',
     message: decodeURI(message)
    });
-});
-
-
-router.get('/login',function(req,res,next) {
-  res.render('index', { title: 'Express' });
 });
 
 
@@ -54,10 +49,10 @@ router.post('/login',function(req,res,next) {
     }
     console.log(result[0].password);
     if(password===result[0].password) {
-      return res.render('main', {
-          title: 'LOGIN SUCCESS',
-          insertId: result.insertId,
-        });
+      req.session.user=result[0];
+      // const str = 'aaa' + 'bbb' + res;
+      // const str = `aaabbb${res}`
+      return res.redirect('/main');
       }
       message = encodeURI('密码错误');
       return res.redirect(`/index?message=${message}`);
@@ -113,7 +108,124 @@ router.post('/reset',function(req,res,next){
         code:1
       });
     }
+  });
+ });
 });
+
+
+router.get('/main',function(req,res,next) {
+  req.getConnection(function(errConn,connection) {
+    if(errConn) {
+      console.error('connection error: ', errConn);
+      return next(errConn);
+    }
+    var job_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,6';
+    connection.query(job_sql,['求职实习信息','求职技巧','求职经验','求职其他'],function(errQuery,result1) {
+      if(errQuery) {
+        console.error('query error: ', errConn);
+        return next(errQuery);
+      }
+
+        var study_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,6';
+      connection.query(study_sql,['读研考研经验','读研保研经验','读研真题回忆','读研其他'],function(errQuery,result2) {
+        if(errQuery) {
+        console.error('query error: ', errConn);
+        return next(errQuery);
+          }
+        var aboard_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?) ORDER BY article_time DESC LIMIT 0,6';
+        connection.query(aboard_sql,['出国之路','出国课程专业','出国其他'],function(errQuery,result3) {
+          if(errQuery) {
+                console.error('query error: ', errConn);
+                return next(errQuery);
+              }
+              var result=[result1,result2,result3];
+              console.log(result);
+            res.render('main',{
+                title:"首页",
+                article_list:result
+          });
+        });
+      });
+    });
+  });
 });
+
+
+router.get('/list',function(req,res,next){
+  var type=req.query.type;
+  var page = req.query.page || 1;
+  var everyPageNumber = 4;
+  var start = everyPageNumber*(page-1);
+  req.getConnection(function(errConn,connection) {
+    if(errConn) {
+      console.error('connection error: ', errConn);
+      return next(errConn);
+    }
+    // 查询总条数
+    // select count(*) from articles where article_type=?;
+    // 计算有多少页
+    var sqlArticle='select article_title,article_content,article_id from articles where article_type=? order by article_id desc limit ?,?';
+    connection.query(sqlArticle,[type, start, everyPageNumber],function(errQuery,result1) {
+      if(errQuery) {
+        console.error('query error: ', errQuery);
+        return next(errQuery);
+      }
+      console.log('result1',result1);
+      var sqlPageNumber='select count(*) as count from articles where article_type=?';
+      connection.query(sqlPageNumber,[type],function(errQuery,result2){
+        if(errQuery) {
+          console.error('error',errQuery)
+          return next(errQuery);
+        }
+        console.log('result2:',result2);
+        var allArticleNumber = result2[0].count;
+        var allPageNumber=parseInt(allArticleNumber/everyPageNumber, 10);
+        if(allArticleNumber%everyPageNumber!==0) {
+          allPageNumber += 1;
+        }
+        console.log('page: ', page);
+        console.log('allPageNumber', allPageNumber);
+        var hasPrev = page > 1 ? true : false;
+        var hasNext = page < allPageNumber ? true : false;
+        res.render('list',{
+          list:result1,
+          page:page,
+          hasPrev,
+          hasNext,
+          type:type,
+        });
+      });
+    });
+  });
 });
+
+
+// localhost:3004/article?article_id=40
+router.get('/article', function(req, res,next) {
+  const article_id = req.query.article_id;
+
+  req.getConnection(function(errConn,connection) {
+    if(errConn) {
+      console.error('connection error: ', errConn);
+      return next(errConn);
+    }
+    const sql = 'select * from articles where article_id=?';
+    connection.query(sql,[article_id],function(errQuery,result) {
+      if(errQuery) {
+        console.error('query error: ', errQuery);
+        return next(errQuery);
+      }
+      console.log("result:"+result);
+      console.log("result[0]"+result[0]);
+      if(result.length===0) {
+        res.render('error');
+      }
+      res.render('article',{
+        article: result[0],
+      });
+    });
+  });
+});
+
+
 module.exports = router;

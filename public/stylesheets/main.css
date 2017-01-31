@@ -32,6 +32,7 @@
 				margin-top: 40px;
 				padding: 5px 10px;
 				background: white;
+        position: relative;
 			}
 			.part ul{
 				list-style: none;
@@ -42,7 +43,7 @@
 			.part ul li{
 				font-size: 16px;
 				border-bottom: 1px dashed rgb(160,200,221);
-				margin: 10px 0 10px 10px;
+				margin: 10px 0 10px 20px;
 			}
 			.part ul li a{
 				color: rgb(94,94,94);
@@ -54,9 +55,9 @@
 			.part img{
 				height: 147px;
 				width: 162px;
-				float: right;
-				margin-top: 10px;
-				margin-right: 10px;
+        position: absolute;
+        right: 0px;
+        top: 0px;
 			}
 			/*右侧栏目*/
 			.right{

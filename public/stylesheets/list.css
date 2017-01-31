@@ -1,0 +1,68 @@
+/*@import url('base.css');*/
+#main{
+	padding: 20px 40px;
+	width: 560px;
+	background: white;
+}
+
+.article_container{
+	width: 568px;
+	height: 130px;
+	border-bottom: 1px solid rgb(215,215,215);
+	margin-bottom: 10px;
+	padding-bottom: 20px;
+	overflow: hidden;
+}
+.article_container h2 {
+	padding: 10px 0px;
+}
+.article_content{
+	font-size: 14px;
+	padding: 5px 0;
+}
+.lab{
+	color: rgb(40,133,180);
+}
+/*阅读全文*/
+.read-all{
+	color: rgb(48,171,193);
+}
+
+.right-first{
+	top: 120px;
+	left: 857px;
+
+}
+.right-second{
+	top: 385px;
+	left: 857px;
+}
+.right-thrid {
+top: 650px;
+left: 857px;
+}
+
+#sub_art {
+height: 260px;
+color: #14aaeb;
+font-family: "华文新魏";
+}
+
+#sub_art .sub_p {
+text-align: center;
+font-size: 28px;
+margin-top: 80px;
+font-weight: bold;
+}
+
+#more{
+	width: 153px;
+	height: 35px;
+	font-size: 20px;
+	color: white;
+	background: rgb(215,215,215);
+	line-height: 35px;
+	text-align: center;
+	margin-left: 200px;
+	cursor: pointer;
+}
