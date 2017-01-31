@@ -4,7 +4,10 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/write', function(req, res, next) {
   if(req.session.user) {
-    res.render('write');
+    var message=req.query.message;
+    res.render('write', {
+      message: decodeURI(message)
+    });
   }
   else {
     res.redirect('/');
@@ -25,16 +28,13 @@ router.post('/write', function(req, res, next) {
     }
     var sql='insert into articles (article_title,article_type,article_content,student_id,article_time) VALUES(?,?,?,?,?)';
     connection.query(sql,[article_title,article_type,article_content,student_id,article_time],function(errQuery, result) {
-      console.log('sql: ', sql);
       if(errQuery) {
         console.error('query error: ', errConn);
         return next(errQuery);
       }
       console.log('result: ', result);
-      // var message=encodeURI('保存成功');
-    return res.render('write', {
-      message:'保存成功'
-    });
+      var message=encodeURI('保存成功');
+      return res.redirect(`/users/write?message=${message}`);
   });
 });
 }
