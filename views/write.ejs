@@ -46,20 +46,42 @@
             </div>
             <div id="buttonContainer">
               <input type="submit"  value="提交" id="submit_btn" class="button">
-              <input type="button"  value="清空" id="claer_btn" class="button">
+              <input type="button"  value="清空" id="clear_btn" class="button">
             </div>
       </div>
     </form>
         <% include _footer.ejs %>
         <script>
+        var clear_btn=document.getElementById('clear_btn');
+
+        //封装绑定事件的函数
+        function addEventHandler(element,type,handler) {
+          //DOM2级方法
+          if(element.addEventHandler) {
+            element.addEventHandler(type,handler,false);
+          }
+          //兼容IE
+          else if(element.attachEvent) {
+            element.attachEvent("on"+type,handler);
+          }
+          //DOM0级方法
+          else {
+            element["on"+type]=handler;
+          }
+        }
+        //保存文章
         function save() {
           var message='<%= message %>';
-          if(message==="保存成功") {
+          if(message==='保存成功') {
             alert("文章已经保存成功！");
           }
         }
         window.onload=function() {
           save();
+          addEventHandler(clear_btn,"click",function() {
+            var textarea=document.getElementById('textarea');
+            textarea.value="";
+          });
         }
 
         </script>
