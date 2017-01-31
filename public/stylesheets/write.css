@@ -1,0 +1,61 @@
+
+
+#main {
+  padding: 50px 40px 0px 40px ;
+  width: 600px;
+  background: white;
+}
+#main p:first-child {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 40px;
+
+}
+.tit {
+  border-left: 1px solid rgb(48,171,193);
+  height: 35px;
+  font-size: 18;
+  color: #333;
+  line-height: 35px;
+  padding-left:12px;
+  margin: 30px 25px;
+
+}
+.tit span:first-child {
+  margin-right: 29px;
+}
+.star {
+  color: red;
+  margin-left: 35px;
+}
+.tit [type="text"]:first-of-type {
+  width: 385px;
+  height: 30px;
+
+}
+.tit select {
+  height: 30px;
+}
+.main-article {
+  width: 650px;
+  margin-left: -25px;
+}
+textarea {
+  width: 550px;
+  height: 430px;
+  margin: 7px;
+  margin-left: 50px;
+  background: white;
+}
+#buttonContainer {
+margin-left: 50px;
+margin-bottom: 20px;
+}
+.button {
+  background: url(../images/login/u18.png);
+	border :none;
+	height: 27px;
+	width: 63px;
+	margin: 0px 0 0 113px;
+	color: white;
+}
