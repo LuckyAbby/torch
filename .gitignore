@@ -3,3 +3,6 @@ test.md
 
 # 忽略 IDE 配置目录
 .idea
+
+
+node_modules

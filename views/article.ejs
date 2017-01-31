@@ -10,16 +10,68 @@
     <!--导航栏信息 -->
     <% include _nav.ejs %>
     <div id="main">
-    <h1><%= article.article_title %></h1>
-    <div id="article_message"> hhh  </div>
-    <div class="">
-    <%= article.article_content %>
+    <h1><%= articles[0].article_title %></h1>
+    <div id="article_message"> 点赞评论信息 </div>
+    <div id="article_content">
+    <%= articles[0].article_content %>
     </div>
+    <div id="mesg_box">
+		<div id="mesg_title"><span>留言区</span></div>
+
+    <% articles.forEach(function(item) { %>
+      <p><%= item.comment_content %></p>
+    <% }) %>
+
+		<form name="textForm" id="tf">
+			<textarea class="leave_mesg" name="t_a" id="t_a" placeholder="快快说点啥吧…O(∩_∩)O"></textarea>
+			<input type="button" class="bt"  value="清空"/>
+			<input type="button" class="bt" id="comment"  value="发表"/>
+		</form>
+	</div>
    </div>
     <!--右边部分 -->
     <% include _right.ejs %>
     <div id="none" style="display:none"></div>
     <!-- footer部分 -->
     <% include _footer.ejs %>
+  <script type="text/javascript">
+
+/*
+// get comment list
+function getCommentList() {
+  $.get('/users/comment_list', function(res) {
+    if (res.code === 0) {
+      return alert('get comment list failed');
+    }
+    var dom = '';
+    res.forEach(function(item) {
+      dom += '<p data-id="'+item.comment_id'">'
+      +item.comment_content+
+      '<span></span>'
+      '</p>';
+    });
+  });
+}
+*/
+
+$('.comment_reply').click(function() {
+
+});
+
+    $('#comment').click(function() {
+      var content;
+      var article_id = 'xxx'; // get article_id from url
+      $.post('/users/comment', { comemnt: content, article_id }, function(res) {
+        if (res.code === 1001) {
+          return alert('Please login then comment');
+        }
+        if (res.code === 0) {
+          //把该条评论通过 inner HTML 添加到页面上
+          return alert('comment success');
+        }
+
+      });
+    });
+  </script>
   </body>
 </html>

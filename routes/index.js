@@ -209,7 +209,11 @@ router.get('/article', function(req, res,next) {
       console.error('connection error: ', errConn);
       return next(errConn);
     }
-    const sql = 'select * from articles where article_id=?';
+    // const sql = 'select * from articles where article_id=?';
+    const sql = 'select * from articles ' +
+'LEFT JOIN comments' +
+'on articles.article_id=comments.article_id ' +
+'where articles.article_id=?';
     connection.query(sql,[article_id],function(errQuery,result) {
       if(errQuery) {
         console.error('query error: ', errQuery);
@@ -221,7 +225,7 @@ router.get('/article', function(req, res,next) {
         res.render('error');
       }
       res.render('article',{
-        article: result[0],
+        articles: result,
       });
     });
   });
