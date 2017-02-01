@@ -211,7 +211,7 @@ router.get('/article', function(req, res,next) {
     }
     // const sql = 'select * from articles where article_id=?';
     const sql = 'select * from articles ' +
-'LEFT JOIN comments' +
+'LEFT JOIN comments ' +
 'on articles.article_id=comments.article_id ' +
 'where articles.article_id=?';
     connection.query(sql,[article_id],function(errQuery,result) {
