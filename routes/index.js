@@ -209,7 +209,6 @@ router.get('/article', function(req, res,next) {
       console.error('connection error: ', errConn);
       return next(errConn);
     }
-    // const sql = 'select * from articles where article_id=?';
     const sql = 'select * from articles ' +
 'LEFT JOIN comments ' +
 'on articles.article_id=comments.article_id ' +
@@ -232,4 +231,8 @@ router.get('/article', function(req, res,next) {
 });
 
 
+// about页面
+router.get('/about',function(req,res,next) {
+  res.render('about');
+})
 module.exports = router;
