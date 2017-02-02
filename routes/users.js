@@ -43,6 +43,42 @@ router.post('/write', function(req, res, next) {
   }
 });
 
+router.post('/comment',function(req,res) {
+  if(!req.session.user) {
+    console.log("aaa");
+    return res.json({
+      code: 1001,
+      message: '未登录',
+    });
+  }
+  var comment_content=req.body.comment_content;
+  var article_id=req.body.article_id;
+  var student_id=req.session.user.student_id;
+  var data = {
+    comment_content,
+    article_id,
+    student_id,
+    comment_time:new Date(),
+  };
+  console.log(data);
+  req.getConnection(function(errConn,connection) {
+    if(errConn) {
+      console.error('connection error: ', errConn);
+      return next(errConn);
+    }
+  var sql='insert into comments set ?';
+  connection.query(sql,[data],function(errQuery,result) {
+    if(errQuery) {
+      console.error('query error: ', errConn);
+      return next(errQuery);
+    }
+    return res.json({
+      code: 0,
+      message: '评论成功',
+    });
+  });
+});
+});
 /*
 router.post('/comment', (req, res) {
   if (!req.session.user) {
