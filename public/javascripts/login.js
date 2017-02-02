@@ -93,7 +93,7 @@ function checkBrowser() {
        id_card:id_card
      };
       var xmlHttp=initAjax();
-      xmlHttp.open("post","/reset",true);
+      xmlHttp.open("POST","/reset",true);
       xmlHttp.onreadystatechange=function() {
         if(xmlHttp.readyState===4) {
           if(xmlHttp.status===200) {
