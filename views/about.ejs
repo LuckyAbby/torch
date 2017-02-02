@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>关于我们</title>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="/stylesheets/about.css">
+<script>
+function choose(id1,id2)
+{
+	var d=document.getElementById('select');
+	var a=d.options[d.selectedIndex].value;
+	var b=document.getElementById(id1);
+	var c=document.getElementById(id2);
+	if(a=="1"){
+    c.style.display='none';
+    b.style.display='block';
+  }
+
+	if(a=="2")
+	{
+		b.style.display='none';
+		c.style.display='block';
+	}
+}
+</script>
+</head>
+
+<body>
+  <!--导航栏信息 -->
+  <% include _nav.ejs %>
+  <!-- 成员信息 -->
+<div id="a01"><!--第1部分-->
+        <div class="text">
+        <p id="t01">01</p>
+        <p id="torch">Torch团队</p>
+        </div>
+        <div id="paratwo" class="text">
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Torch职业生涯规划与就业指导团队成立于2013年12月，隶属于大连理工大学管理与经济学部。在学生办公室指导下，依托自身的网站平台、微信平台和线下平台，为有意向从事经管类岗位的各专业在校生提供有价值、有互动的信息及经验分享服务，与你的职业生涯规划密切相关。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Torch寓意管经学子爱的传递像薪火一样，生生不息，传递接力。</p>
+      </div>
+</div>
+<div id="a02"><!--第2部分-->
+      <div id="a2-1"><!--微信平台-->
+      <!-- <img src="/torch/images/关于我们/u94.jpg" /> -->
+      <p class="smallhead">微信平台</p>
+      <p class="parafour">&nbsp;&nbsp;微信平台以腾讯微信公众平台为载体，为求职者提供经管类实习与求职信息；特定企业与职位介绍；简历、笔试、面试等各环节的求职技能；求职成功者的经验分享、校友与职场“过来人”的倾囊相授。公众号：Torch</p>
+      </div>
+      <div id="a2-2"><!--网站平台-->
+      <!-- <img src="/torch/images/关于我们/u82.jpg" /> -->
+      <p class="smallhead">网站平台</p>
+      <p class="parafour">&nbsp;&nbsp;网站分为实习信息、学子心声、职涯档案、奖学金系统等模块，旨在为同学们提供一个分享职业生涯经历、管理职业生涯信息、以及奖学金的网上申报与评审的平台。网址首页：</p>
+      <p>http://torch.dlut.edu.cn/torch/login.html</p>
+      </div>
+      <div id="a2-3"><!--线下平台-->
+      <!-- <img src="/torch/images/关于我们/u92.png" /> -->
+      <p class="smallhead">线下平台</p>
+      <p class="parafour">&nbsp;&nbsp;不定期举办各种小型沙龙、职涯规划讲座和竞赛活动。活动地点：六角楼、7舍社区驿站等。</p>
+      </div>
+      <div id="a2-4"><!--校友平台-->
+      <!-- <img src="/torch/images/关于我们/xiaoyou.jpg" /> -->
+      <p class="smallhead">校友平台</p>
+      <p class="parafour">&nbsp;&nbsp;为校友提供分享经验、交流学习的平台</p>
+      </div>
+      <div id="a2-5"><!--标题-->
+      <p id="t02">02</p>
+      <p id="sida">四大平台介绍</p>
+      </div>
+</div>
+<div id="aa03">
+<span id="t03">03</span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="consist">团队组成</span>&nbsp;&nbsp;&nbsp;&nbsp;
+<select id="select" onchange="choose('a03','a05')">
+  <option value ="1">第一届</option>
+  <option value ="2">第二届</option>
+  <option value ="3"  selected="selected">第三届</option>
+</select>
+</div>
+<div id="a03">
+      <div class="left"><!--队长和技术组-->
+           <div class="captain"><!--队长-->
+           <div class="capline1">
+           <div id="zhenghao">
+           <img src="/torch/images/关于我们/郑皓.jpg" />
+           <p class="chengwei">郑皓&nbsp;指导教师</p>
+           </div>
+           <div id="xuelong">
+           <img src="/torch/images/关于我们/雪龙.jpg" />
+           <p class="chengwei">陈雪龙&nbsp;技术顾问</p>
+           </div>
+           <div id="yongsheng">
+           <img src="/torch/images/关于我们/永胜.png" />
+           <p class="chengwei">钱永胜&nbsp;技术顾问</p>
+           </div>
+           </div>
+           <div id="shujun">
+           <img src="/torch/images/关于我们/蔡舒俊.jpg" />
+           <p class="chengwei">蔡舒俊&nbsp;队长</p>
+           </div>
+           <div class="word1">
+           <p class="cap1-1">队长</p>
+           <p class="cap1-2">统筹和协调运营组、技术组和设计组工作</p>
+           </div>
+           </div>
+           <div class="tech"><!--技术组-->
+           <div class="techline1">
+           <div id="jiangnan">
+           <img src="/torch/images/关于我们/江南.png" />
+           <p class="chengwei">夏江南&nbsp;组长</p>
+           </div>
+           <div id="kaichun">
+           <img src="/torch/images/关于我们/周开春.png" />
+           <p class="chengwei">周开春</p>
+           </div>
+           <div id="zhanghuan1">
+           <img src="/torch/images/关于我们/张欢.jpg" />
+           <p class="chengwei">张欢</p>
+           </div>
+
+
+
+           </div>
+           <div class="techline2">
+           <div id="shujun1">
+           <img src="/torch/images/关于我们/蔡舒俊.jpg" />
+           <p class="chengwei">蔡舒俊</p>
+           </div>
+           <div id="zhaosa">
+           <img src="/torch/images/关于我们/赵飒.jpg" />
+           <p class="chengwei">赵飒</p>
+           </div>
+            <div id="liutao1">
+           <img src="/torch/images/关于我们/刘涛.jpg" />
+           <p class="chengwei">刘涛</p>
+           </div>
+
+
+           </div>
+           <div class="techline3">
+
+           <div id="jiyou">
+           <img src="/torch/images/关于我们/郭继友.jpg" />
+           <p class="chengwei">郭继友</p>
+           </div>
+
+          <div id="zhenping">
+           <img src="/torch/images/关于我们/振平.png" />
+           <p class="chengwei">尚振平</p>
+           </div>
+
+           </div>
+           <div class="word2">
+           <p class="tech1-1">T技术组</p>
+           <p class="tech1-2">负责网站和微信平台开发和维护。</p>
+           </div>
+           </div>
+      </div>
+      <div class="right"><!--运营组和设计组-->
+           <div class="operate"><!--运营组-->
+           <div class="word3">
+           <p class="ope1-1">O运营组</p>
+           <p class="ope1-2">负责各平台的信息维护、宣传推广以及线下活动组织</p>
+           </div>
+           <div class="opeline1">
+           <div id="zhanghao" class="ope1">
+           <img src='/torch/images/关于我们/张浩.jpg' />
+           <p class="chengwei">张浩&nbsp;组长</p>
+           </div>
+           <div id="jibao" class="ope1">
+           <img src="/torch/images/关于我们/季豹.png" />
+           <p class="chengwei">季豹</p>
+           </div>
+           <div id="yuanyuan" class="ope1">
+           <img src="/torch/images/关于我们/媛媛.jpg" />
+           <p class="chengwei">岳媛媛</p>
+           </div>
+           </div>
+           <div class="opeline2">
+           <div id="yangyang" class="ope1">
+           <img src="/torch/images/关于我们/杨杨.jpg" />
+           <p class="chengwei">杨扬</p>
+           </div>
+           <div id="futao" class="ope1">
+           <img src="/torch/images/关于我们/福涛.jpg" />
+           <p class="chengwei">张福涛</p>
+           </div>
+            <div id="tianwei" class="ope1">
+           <img src="/torch/images/关于我们/天伟.jpg" />
+           <p class="chengwei">龚天伟</p>
+           </div>
+
+
+           </div>
+           <div class="opeline3">
+
+           <div id="meiquan1" class="ope1">
+           <img src="/torch/images/关于我们/李美权.jpg" />
+           <p class="chengwei">李美权</p>
+           </div>
+
+          <div id="xujun" class="ope1">
+           <img src="/torch/images/关于我们/徐俊.jpg" />
+           <p class="chengwei">徐俊</p>
+           </div>
+
+           </div>
+           <div class="opeline4">
+
+           <div id="huanhuan" class="ope1">
+           <img src="/torch/images/关于我们/欢欢.jpg" />
+           <p class="chengwei">索欢欢</p>
+           </div>
+
+          <div id="xiancheng" class="ope1">
+           <img src="/torch/images/关于我们/献成.jpg" />
+           <p class="chengwei">王献成</p>
+           </div>
+
+           </div>
+
+           </div>
+           <div class="design"><!--设计组-->
+            <div class="word4">
+           <p class="des1-1">D设计组</p>
+           <p class="des1-2">负责各平台以及团队VI系统的布局和设计。</p>
+           </div>
+            <div class="desline1">
+
+           <div id="zhaoyue" class="des1">
+           <img src="/torch/images/关于我们/赵越.jpg" />
+           <p class="chengwei">赵越&nbsp;组长</p>
+           </div>
+
+          <div id="xinyu" class="des1">
+           <img src="/torch/images/关于我们/黄心宇.jpg" />
+           <p class="chengwei">黄心宇</p>
+           </div>
+
+           </div>
+            <div class="desline2">
+
+           <div id="yueying" class="des1">
+           <img src="/torch/images/关于我们/姚月樱.jpg" />
+           <p class="chengwei">姚月樱</p>
+           </div>
+
+          <div id="jingjiu" class="des1">
+           <img src="/torch/images/关于我们/九九.jpg" />
+           <p class="chengwei">李京九</p>
+           </div>
+
+           </div>
+            <div class="desline3">
+
+           <div id="shaoting" class="des1">
+           <img src="/torch/images/关于我们/绍婷.jpg" />
+           <p class="chengwei">易绍婷</p>
+           </div>
+
+          <div id="xiaopan" class="des1">
+           <img src="/torch/images/关于我们/小盼.jpg" />
+           <p class="chengwei">吴小盼</p>
+           </div>
+
+           </div>
+           </div>
+      </div>
+</div>
+<div id="a05">
+      <div class="left"><!--队长和技术组-->
+           <div class="captain"><!--队长-->
+           <div class="capline1">
+           <div id="zhenghao">
+           <img src="/torch/images/关于我们/郑皓.jpg" />
+           <p class="chengwei">郑皓&nbsp;指导教师</p>
+           </div>
+           <div id="xuelong">
+           <img src="/torch/images/关于我们/雪龙.jpg" />
+           <p class="chengwei">陈雪龙&nbsp;技术顾问</p>
+           </div>
+           <div id="yongsheng">
+           <img src="/torch/images/关于我们/永胜.png" />
+           <p class="chengwei">钱永胜&nbsp;技术顾问</p>
+           </div>
+           </div>
+           <div id="meiquan2">
+           <img src="/torch/images/关于我们/李美权.jpg" />
+           <p class="chengwei">李美权&nbsp;队长</p>
+           </div>
+           <div class="word1">
+           <p class="cap1-1">队长</p>
+           <p class="cap1-2">统筹和协调运营组、技术组和设计组工作</p>
+           </div>
+           </div>
+           <div class="tech"><!--技术组-->
+           <div class="techline1">
+           <div id="jiangnan" class="tech20">
+           <img src="/torch/images/关于我们/张欢.jpg" />
+           <p class="chengwei">张欢&nbsp;组长</p>
+           </div>
+           <div id="kaichun">
+           <img src="/torch/images/关于我们/伍杰.jpg" />
+           <p class="chengwei">伍杰</p>
+           </div>
+
+
+
+
+           </div>
+           <div class="techline2">
+
+           <div id="zhaosa" class="tech20">
+           <img src="/torch/images/关于我们/刘涛.jpg" />
+           <p class="chengwei">刘涛</p>
+           </div>
+            <div id="liutao1">
+           <img src="/torch/images/关于我们/江伟.jpg" />
+           <p class="chengwei">郭江伟</p>
+           </div>
+
+
+           </div>
+           <div class="techline3">
+
+           <div id="jiyou" class="tech20">
+           <img src="/torch/images/关于我们/羽婷.jpg" />
+           <p class="chengwei">卢羽婷</p>
+           </div>
+
+          <div id="zhenping">
+           <img src="/torch/images/关于我们/克程.jpg" />
+           <p class="chengwei">黄克程</p>
+           </div>
+
+           </div>
+           <div class="word2">
+           <p class="tech1-1">T技术组</p>
+           <p class="tech1-2">负责网站和微信平台开发和维护。</p>
+           </div>
+           </div>
+      </div>
+      <div class="right"><!--运营组和设计组-->
+           <div class="operate"><!--运营组-->
+           <div class="word3">
+           <p class="ope1-1">O运营组</p>
+           <p class="ope1-2">负责各平台的信息维护、宣传推广以及线下活动组织</p>
+           </div>
+           <div class="opeline1">
+           <div id="meiquan3" class="ope2">
+           <img src="/torch/images/关于我们/李美权.jpg" />
+           <p class="chengwei">李美权&nbsp;组长</p>
+           </div>
+           <div id="jibao" class="ope2">
+           <img src="/torch/images/关于我们/季豹.png" />
+           <p class="chengwei">季豹</p>
+           </div>
+           <div id="fangfei" class="ope2">
+           <img src="/torch/images/关于我们/芳菲.jpg" />
+           <p class="chengwei">魏芳菲</p>
+           </div>
+           <div id="mapei" class="ope2">
+           <img src="/torch/images/关于我们/麻配.jpg" />
+           <p class="chengwei">麻佩</p>
+           </div>
+           </div>
+           <div class="opeline2">
+           <div id="huanhuan2" class="ope2">
+           <img src="/torch/images/关于我们/欢欢.jpg" />
+           <p class="chengwei">索欢欢</p>
+           </div>
+           <div id="futao2" class="ope2">
+           <img src="/torch/images/关于我们/福涛.jpg" />
+           <p class="chengwei">张福涛</p>
+           </div>
+           <div id="guifang" class="ope2">
+           <img src="/torch/images/关于我们/桂芳.jpg" />
+           <p class="chengwei">尤桂芳</p>
+           </div>
+           <div id="dengyang" class="ope2">
+           <img src="/torch/images/关于我们/邓阳.jpg" />
+           <p class="chengwei">邓阳</p>
+           </div>
+           </div>
+           <div class="opeline3">
+
+          <div id="yuanyuan2" class="ope2">
+           <img src="/torch/images/关于我们/媛媛.jpg" />
+           <p class="chengwei">岳媛媛</p>
+           </div>
+           <div id="xujun2" class="ope2">
+           <img src="/torch/images/关于我们/徐俊.jpg" />
+           <p class="chengwei">徐俊</p>
+           </div>
+           <div id="liuyuan" class="ope2">
+           <img src="/torch/images/关于我们/刘媛.jpg" />
+           <p class="chengwei">刘媛</p>
+           </div>
+           <div id="lixiao" class="ope2">
+           <img src="/torch/images/关于我们/壕潇.jpg" />
+           <p class="chengwei">李潇</p>
+           </div>
+
+           </div>
+           <div class="opeline4">
+
+          <div id="xiancheng2" class="ope2">
+           <img src="/torch/images/关于我们/献成.jpg" />
+           <p class="chengwei">王献成</p>
+           </div>
+           <div id="dingye" class="ope2">
+           <img src="/torch/images/关于我们/丁野.jpg" />
+           <p class="chengwei">丁野</p>
+           </div>
+           <div id="xiaorui" class="ope2">
+           <img src="/torch/images/关于我们/晓睿.png" />
+           <p class="chengwei">韦晓睿</p>
+           </div>
+           <div id="yinhao" class="ope2">
+           <img src="/torch/images/关于我们/银昊.jpg" />
+           <p class="chengwei">吴银昊</p>
+           </div>
+
+           </div>
+            <div class="opeline5">
+
+          <div id="tianwei2" class="ope2">
+           <img src="/torch/images/关于我们/天伟.jpg" />
+           <p class="chengwei">龚天伟</p>
+           </div>
+           <div id="yunhan" class="ope2">
+           <img src="/torch/images/关于我们/云寒.jpg" />
+           <p class="chengwei">郝允翰</p>
+           </div>
+           <div id="wanyuan" class="ope2">
+           <img src="/torch/images/关于我们/万媛媛.jpg" />
+           <p class="chengwei">万媛媛</p>
+           </div>
+           <div id="yaqi" class="ope2">
+           <img src="/torch/images/关于我们/雅琪.jpg" />
+           <p class="chengwei">赵雅琪</p>
+           </div>
+
+
+           </div>
+
+           </div>
+           <div class="design"><!--设计组-->
+            <div class="word4">
+           <p class="des1-1">D设计组</p>
+           <p class="des1-2">负责各平台以及团队VI系统的布局和设计。</p>
+           </div>
+
+           <div id="shaoting2" class="des2">
+           <img src="/torch/images/关于我们/绍婷.jpg" />
+           <p class="chengwei">易绍婷&nbsp;组长</p>
+           </div>
+
+           <div id="xinyu2" class="des2">
+           <img src="/torch/images/关于我们/黄心宇.jpg" />
+           <p class="chengwei">黄心宇</p>
+           </div>
+         <div id="jingjiu2" class="des2">
+           <img src="/torch/images/关于我们/九九.jpg" />
+           <p class="chengwei">李京九</p>
+           </div>
+          <div id="xiaopan2" class="des2">
+           <img src="/torch/images/关于我们/小盼.jpg" />
+           <p class="chengwei">吴小盼</p>
+           </div>
+
+           </div>
+      </div>
+</div>
+<div id="a04">
+<p id="a041">Torch团队每年都会吸纳一定数量的新人，欢迎志同道合的同学加入！</p>
+<p id="a042">©2015 Torch. All rights reserved.</p>
+</div>
+</body>
+</html>
