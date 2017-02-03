@@ -202,6 +202,9 @@ router.get('/list',function(req,res,next){
 
 // localhost:3004/article?article_id=40
 router.get('/article', function(req, res,next) {
+  if(!req.session.user) {
+    return res.redirect('/');
+  }
   const article_id = req.query.article_id;
 
   req.getConnection(function(errConn,connection) {
