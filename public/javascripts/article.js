@@ -59,7 +59,8 @@ function comment() {
         if(xmlHttp.status===200) {
           var obj=JSON.parse(xmlHttp.responseText);
           if(obj['code']===1001) {
-            return alert('请您先登录再进行评论');
+            alert('请您先登录再进行评论');
+            window.location.href='http://localhost:3004/';
           }
           if(obj['code']===0) {
            $('commit_content').value="";
@@ -73,6 +74,7 @@ function comment() {
   }
   else {
     alert("请输入评论");
+
   }
 
 }
