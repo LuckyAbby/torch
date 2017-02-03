@@ -17,6 +17,11 @@
     <%= articles[0].article_content %>
     </div>
     <div id="mesg_box">
+      <div id="">
+        <ul>
+          <li><span>赞()</span></li>
+        </ul>
+      </div>
 		<div id="mesg_title"><span>留言区</span></div>
     <% articles.forEach(function(item) { %>
       <p><%= item.comment_content %></p>

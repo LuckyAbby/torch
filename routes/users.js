@@ -46,7 +46,7 @@ router.post('/write', function(req, res, next) {
 router.post('/comment',function(req,res) {
   if(!req.session.user) {
     console.log("aaa");
-    return res.json({
+  res.json({
       code: 1001,
       message: '未登录',
     });
@@ -79,33 +79,13 @@ router.post('/comment',function(req,res) {
   });
 });
 });
-/*
-router.post('/comment', (req, res) {
-  if (!req.session.user) {
-    return res.json({
-      code: 1001,
-      message: 'not login',
-    });
-  }
-  var comment = req.body.comment; //get comment content from ajax
-  var student_id = req.session.user.student_id;
-  var article_id = req.body.article_id;
 
-  var data = {
-    comment_content: comment,
-    student_id,
-    article_id,
-    comment_date: new Date(),
-  };
-  var sql = 'insert into comments set ?';
-  connection.query(sql, [data], (err, result) => {
-    // if save data to db success
-    return res.json({
-      code: 0,
-      message: 'comment success!';
-    });
-  });
-});
-*/
+
+router.post('/support',function(req,res,next) {
+  if(req.session.user) {
+    return redirect('/');
+  }
+  
+})
 
 module.exports = router;
