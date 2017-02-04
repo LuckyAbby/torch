@@ -45,7 +45,6 @@ router.post('/write', function(req, res, next) {
 
 router.post('/comment',function(req,res) {
   if(!req.session.user) {
-    console.log("aaa");
   res.json({
       code: 1001,
       message: '未登录',
@@ -60,7 +59,6 @@ router.post('/comment',function(req,res) {
     student_id,
     comment_time:new Date(),
   };
-  console.log(data);
   req.getConnection(function(errConn,connection) {
     if(errConn) {
       console.error('connection error: ', errConn);
@@ -82,10 +80,13 @@ router.post('/comment',function(req,res) {
 
 
 router.post('/support',function(req,res,next) {
-  if(req.session.user) {
-    return redirect('/');
+  if(!req.session.user) {
+  res.json({
+      code: 1001,
+      message: '未登录',
+    });
   }
-  
+
 })
 
 module.exports = router;
