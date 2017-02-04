@@ -42,6 +42,8 @@ return xmlHttp;
 
 var commentBtn=$('comment');
 var clearBtn=$('clear');
+
+
 //向后台传入评论
 function comment() {
   var content=$('commit_content').value;
@@ -74,10 +76,14 @@ function comment() {
   }
   else {
     alert("请输入评论");
-
   }
-
 }
+
+
+//点赞的函数
+// function support() {
+//
+// }
 
 
 addEventHandler(commentBtn,'click',comment);
