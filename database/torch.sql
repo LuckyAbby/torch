@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-02-04 19:42:13
+Date: 2017-02-05 22:42:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -45,7 +45,7 @@ CREATE TABLE `comments` (
   `comment_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for login
@@ -79,10 +79,10 @@ CREATE TABLE `oppose` (
 -- ----------------------------
 DROP TABLE IF EXISTS `support`;
 CREATE TABLE `support` (
-  `support_id` int(11) NOT NULL,
+  `support_id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` int(11) NOT NULL,
   `article_id` int(11) NOT NULL,
   `support_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `support_flag` varchar(255) NOT NULL,
   PRIMARY KEY (`support_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-SET FOREIGN_KEY_CHECKS=1;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
