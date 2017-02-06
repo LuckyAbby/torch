@@ -102,10 +102,12 @@ function support() {
         if(obj['code']===0) {
           $('praise_img').src="/images/article/praised.jpg";
           supportFlag=true;
+          $('supportCount').innerHTML=obj['supportCount'];
         }
       }
     }
   }
+
   xmlHttp.setRequestHeader("Content-Type","application/json");
   xmlHttp.send(JSON.stringify(data));
 }
@@ -132,6 +134,8 @@ function cancelSupport() {
         if(obj['code']===1) {
           $('praise_img').src="/images/article/praise.jpg";
           supportFlag=false;
+          $('supportCount').innerHTML=obj['supportCount'];
+          // console.log('supportFlag',supportFlag);
         }
       }
     }
@@ -141,14 +145,48 @@ function cancelSupport() {
 }
 
 
+//加载页面的时候就显示出评论的数目
+// function displayCount() {
+//   var url=location.href;
+//   var article_id=url.substring(url.indexOf("=")+1,url.length);
+//   var data = {
+//     article_id:article_id,
+//     support:false,
+//   }
+//   var xmlHttp=initAjax();
+//   xmlHttp.open('POST','/users/support',true);
+//   xmlHttp.onreadystatechange=function (){
+//     if(xmlHttp.readyState===4) {
+//       if(xmlHttp.status===200) {
+//         var obj=JSON.parse(xmlHttp.responseText);
+//         if(obj['code']===1001) {
+//           alert('请您先登陆再评论');
+//           window.location.href="http://localhost:3004";
+//         }
+//         if(obj['code']===1) {
+//           $('praise_img').src="/images/article/praise.jpg";
+//           supportFlag=false;
+//           $('supportCount').innerHTML=obj['supportCount'];
+//           // console.log('supportFlag',supportFlag);
+//         }
+//       }
+//     }
+//   }
+//   xmlHttp.setRequestHeader("Content-Type","application/json");
+//   xmlHttp.send(JSON.stringify(data));
+// }
+
+
 addEventHandler(commentBtn,'click',comment);
 addEventHandler(clearBtn,'click',function() {
   $('commit_content').value="";
 });
 addEventHandler($('praise_img'),'click',support);
-if(supportFlag===false) {
-  addEventHandler($('praise_img'),'click',support);
-}
-else {
-  addEventHandler($('praise_img'),'click',cancelSupport);
-}
+addEventHandler($('praise_img'),'click',function() {
+  if(supportFlag===false) {
+    support();
+  }
+  else {
+    cancelSupport();
+  }
+});
