@@ -104,69 +104,42 @@ router.post('/support',function(req,res,next) {
     var supportSql='insert  into support set ?';
     var supportSqlCount='select count(*) as count from support where support_flag=? and article_id=?';
     var cancelSupportSql='insert into support set ?';
-    if(supportFlag===true) {
-      connection.query(supportSql,[data],function(errQuery,result1) {
-        if(errQuery) {
-          console.error('query error: ', errQuery);
-          return next(errQuery);
-        }
-        connection.query(supportSqlCount,['1',article_id],function(errQuery,result2) {
-          if(errQuery) {
-            console.error("query error",errQuery);
-            return next(errQuery);
-          }
-          connection.query(supportSqlCount,['0',article_id],function(errQuery,result3) {
-            if(errQuery) {
-              console.error("query error",errQuery);
-              return next(errQuery);
-            }
-            var result=result2[0].count-result3[0].count;
-            return res.json({
-              code: 0,
-              message:'点赞成功',
-              supportCount:result,
-            })
-          })
-        })
-      })
+
+    var sql = '';
+    if  (supportFlag===true) {
+      sql=supportSql;
     }
     else {
-      connection.query(cancelSupportSql,[data],function(errQuery,result) {
+      sql=cancelSupportSql;
+    }
+
+
+    connection.query(sql,[data],function(errQuery,result1) {
+      if(errQuery) {
+        console.error('query error: ', errQuery);
+        return next(errQuery);
+      }
+      connection.query(supportSqlCount,['1',article_id],function(errQuery,result2) {
         if(errQuery) {
-          console.error('errQuery',errQuery);
+          console.error("query error",errQuery);
           return next(errQuery);
         }
-        connection.query(supportSqlCount,['1',article_id],function(errQuery,result2) {
+        connection.query(supportSqlCount,['0',article_id],function(errQuery,result3) {
           if(errQuery) {
             console.error("query error",errQuery);
             return next(errQuery);
           }
-          console.log("result2",result2);
-          connection.query(supportSqlCount,['0',article_id],function(errQuery,result3) {
-            if(errQuery) {
-              console.error("query error",errQuery);
-              return next(errQuery);
-            }
-              console.log("result3",result3);
-            var result=result2[0].count-result3[0].count;
-              console.log("result",result);
-            return res.json({
-              code: 1,
-              message:'取消点赞成功',
-              supportCount:result,
-            })
-          })
-        })
+          var result=result2[0].count-result3[0].count;
+          return res.json({
+            code: 0,
+            message:'点赞成功',
+            supportCount:result,
+          });
+        });
+      });
+    });
+  });
+});
 
-
-
-        // return res.json({
-        //   code:1,
-        //   message:'取消点赞成功',
-        // })
-      })
-    }
-  })
-})
 
 module.exports = router;
