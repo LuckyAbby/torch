@@ -17,8 +17,8 @@ var back_btn=$('back_btn');
 //封装绑定事件的函数
 function addEventHandler(element,type,handler) {
   //DOM2级方法
-  if(element.addEventHandler) {
-    element.addEventHandler(type,handler,false);
+  if(element.addEventListener) {
+    element.addEventListener(type,handler,false);
   }
   //兼容IE
   else if(element.attachEvent) {
