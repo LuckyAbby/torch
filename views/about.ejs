@@ -3,25 +3,39 @@
 <head>
 <title>关于我们</title>
 <meta charset="utf-8" />
-<link rel="stylesheet" href="/stylesheets/about.css">
+<link rel="stylesheet" href="./stylesheets/about.css">
 <script>
-function choose(id1,id2)
+function changeChoose(id1,id2,id3)
 {
-	var d=document.getElementById('select');
-	var a=d.options[d.selectedIndex].value;
-	var b=document.getElementById(id1);
-	var c=document.getElementById(id2);
-	if(a=="1"){
-    c.style.display='none';
-    b.style.display='block';
+	var selectOption=document.getElementById('select');
+	var selectValue=selectOption.options[selectOption.selectedIndex].value;
+	var group1=document.getElementById(id1);
+	var group2=document.getElementById(id2);
+	var group3=document.getElementById(id3);
+	console.log(group1);
+	console.log("111");
+	if(selectValue=="1") {
+    group3.style.display='none';
+		group2.style.display='none';
+    group1.style.display='block';
   }
 
-	if(a=="2")
+	else if(selectValue=="2")
 	{
-		b.style.display='none';
-		c.style.display='block';
+		group1.style.display='none';
+		group2.style.display='block';
+		group3.style.display='none';
+	}
+	else {
+		group1.style.display='none';
+		group2.style.display='none';
+		group3.style.display='block';
 	}
 }
+// selectOption.onchange=changeChoose('a03','a05','a06');
+// selectOption.addEventListener('change',function(){
+// 	changeChoose('a03','a05','a06');
+// });
 </script>
 </head>
 
@@ -68,7 +82,7 @@ function choose(id1,id2)
 </div>
 <div id="aa03">
 <span id="t03">03</span>&nbsp;&nbsp;&nbsp;&nbsp;<span id="consist">团队组成</span>&nbsp;&nbsp;&nbsp;&nbsp;
-<select id="select" onchange="choose('a03','a05')">
+<select id="select" onchange="changeChoose('a03','a05','a06')">
   <option value ="1">第一届</option>
   <option value ="2">第二届</option>
   <option value ="3"  selected="selected">第三届</option>
@@ -469,9 +483,153 @@ function choose(id1,id2)
            </div>
       </div>
 </div>
+<div id="a06">
+      <div class="left"><!--队长和技术组-->
+           <div class="captain"><!--队长-->
+           <div class="capline1">
+           <div id="zhenghao">
+           <img src="/torch/images/关于我们/郑皓.jpg" />
+           <p class="chengwei">郑皓&nbsp;指导教师</p>
+           </div>
+           <div id="xuelong">
+           <img src="/torch/images/关于我们/雪龙.jpg" />
+           <p class="chengwei">陈雪龙&nbsp;技术顾问</p>
+           </div>
+           <div id="yongsheng">
+           <img src="/torch/images/关于我们/永胜.png" />
+           <p class="chengwei">钱永胜&nbsp;技术顾问</p>
+           </div>
+           </div>
+           <div id="meiquan2">
+           <img src="./images/about/宋直.jpg" />
+           <p class="chengwei">宋直&nbsp;队长</p>
+           </div>
+           <div class="word1">
+           <p class="cap1-1">队长</p>
+           <p class="cap1-2">统筹和协调运营组、技术组和设计组工作</p>
+           </div>
+           </div>
+           <div class="tech"><!--技术组-->
+           <div class="techline1">
+           <div id="jiangnan" class="tech20">
+           <img src="./images/about/刘雨婷.jpg" />
+           <p class="chengwei">刘雨婷&nbsp;组长</p>
+           </div>
+           <div id="kaichun">
+           <img src="./images/about/李岩.jpg" />
+           <p class="chengwei">李岩</p>
+           </div>
+           </div>
+           <div class="techline2">
+           <div id="zhaosa" class="tech20">
+          <img src="./images/about/二彪.jpg" />
+           <p class="chengwei">袁二彪</p>
+           </div>
+            <div id="liutao1">
+          <img src="./images/about/康新艺.jpg" />
+           <p class="chengwei">康新艺</p>
+           </div>
+
+
+           </div>
+           <div class="techline3">
+
+           <div id="jiyou" class="tech20">
+           <img src="./images/about/李智.jpg" />
+           <p class="chengwei">李智</p>
+           </div>
+
+          <div id="zhenping">
+           <img src="./images/about/尤月.jpg" />
+           <p class="chengwei">尤玥</p>
+           </div>
+
+           </div>
+           <div class="word2">
+           <p class="tech1-1">T技术组</p>
+           <p class="tech1-2">负责网站和微信平台开发和维护。</p>
+           </div>
+           </div>
+      </div>
+      <div class="right"><!--运营组和设计组-->
+           <div class="operate"><!--运营组-->
+           <div class="word3">
+           <p class="ope1-1">O运营组</p>
+           <p class="ope1-2">负责各平台的信息维护、宣传推广以及线下活动组织</p>
+           </div>
+
+           <div class="opeline1">
+           <div id="yanyan" class="ope2">
+          <img src="./images/about/潘燕燕.jpg" />
+           <p class="chengwei">潘燕燕&nbsp;组长</p>
+           </div>
+           <div id="jiuyu" class="ope2">
+          <img src="./images/about/董久钰.jpg" />
+           <p class="chengwei">董久钰</p>
+           </div>
+
+           </div>
+           <div class="opeline2">
+           <div id="wenyu" class="ope2">
+          <img src="./images/about/黄文钰.jpg" />
+           <p class="chengwei">黄文钰</p>
+           </div>
+           <div id="siqi" class="ope2">
+           <img src="./images/about/刘思奇.jpg" />
+           <p class="chengwei">刘思奇</p>
+           </div>
+
+				 </div>
+				 <div class="opeline3">
+					 <div id="dongyu" class="ope2">
+ 					<img src="./images/about/董煜.jpg" />
+ 					<p class="chengwei">董煜</p>
+ 					</div>
+ 					<div id="weiqi" class="ope2">
+ 				 <img src="./images/about/何伟琦.jpg" />
+ 					<p class="chengwei">何伟琦</p>
+ 					</div>
+				 </div>
+
+				 <div class="opeline4">
+					 <div id="jiayue" class="ope2">
+ 					<img src="./images/about/孙嘉悦.jpg" />
+ 					<p class="chengwei">孙嘉悦</p>
+ 					</div>
+ 					<div id="kangjing" class="ope2">
+ 					<img src="./images/about/谭康静.jpg" />
+ 					<p class="chengwei">谭康静</p>
+ 					</div>
+				 </div>
+
+           </div>
+
+           <div class="design"><!--设计组-->
+            <div class="word4">
+           <p class="des1-1">D设计组</p>
+           <p class="des1-2">负责各平台以及团队VI系统的布局和设计。</p>
+           </div>
+
+           <div id="shaoting2" class="des2">
+           <img src="./images/about/吴雨蔓.jpg" />
+           <p class="chengwei">吴雨蔓&nbsp;组长</p>
+           </div>
+
+           <div id="xinyu2" class="des2">
+          <img src="./images/about/杨睿颖.jpg" />
+           <p class="chengwei">杨睿颖</p>
+           </div>
+         <div id="jingjiu2" class="des2">
+          <img src="./images/about/邹一琳.jpg" />
+           <p class="chengwei">邹一琳</p>
+           </div>
+         </div>
+      </div>
+</div>
 <div id="a04">
 <p id="a041">Torch团队每年都会吸纳一定数量的新人，欢迎志同道合的同学加入！</p>
 <p id="a042">©2015 Torch. All rights reserved.</p>
 </div>
+
 </body>
 </html>
