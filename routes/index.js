@@ -113,42 +113,42 @@ router.post('/reset',function(req,res,next){
 });
 
 
-// router.get('/main',function(req,res,next) {
-//   req.getConnection(function(errConn,connection) {
-//     if(errConn) {
-//       console.error('connection error: ', errConn);
-//       return next(errConn);
-//     }
-//     var job_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-//     connection.query(job_sql,['求职实习信息','求职技巧','求职经验','求职其他'],function(errQuery,result1) {
-//       if(errQuery) {
-//         console.error('query error: ', errConn);
-//         return next(errQuery);
-//       }
-//
-//         var study_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-//       connection.query(study_sql,['读研考研经验','读研保研经验','读研真题回忆','读研其他'],function(errQuery,result2) {
-//         if(errQuery) {
-//         console.error('query error: ', errConn);
-//         return next(errQuery);
-//           }
-//         var aboard_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-//         connection.query(aboard_sql,['出国之路','出国课程专业','出国其他'],function(errQuery,result3) {
-//           if(errQuery) {
-//                 console.error('query error: ', errConn);
-//                 return next(errQuery);
-//               }
-//               var result=[result1,result2,result3];
-//               console.log(result);
-//             res.render('main',{
-//                 title:"首页",
-//                 article_list:result
-//           });
-//         });
-//       });
-//     });
-//   });
-// });
+router.get('/main',function(req,res,next) {
+  req.getConnection(function(errConn,connection) {
+    if(errConn) {
+      console.error('connection error: ', errConn);
+      return next(errConn);
+    }
+    var job_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
+    connection.query(job_sql,['求职实习信息','求职技巧','求职经验','求职其他'],function(errQuery,result1) {
+      if(errQuery) {
+        console.error('query error: ', errConn);
+        return next(errQuery);
+      }
+
+        var study_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
+      connection.query(study_sql,['读研考研经验','读研保研经验','读研真题回忆','读研其他'],function(errQuery,result2) {
+        if(errQuery) {
+        console.error('query error: ', errConn);
+        return next(errQuery);
+          }
+        var aboard_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?) ORDER BY article_time DESC LIMIT 0,5';
+        connection.query(aboard_sql,['出国之路','出国课程专业','出国其他'],function(errQuery,result3) {
+          if(errQuery) {
+                console.error('query error: ', errConn);
+                return next(errQuery);
+              }
+              var result=[result1,result2,result3];
+              console.log(result);
+              res.render('main',{
+                title:"首页",
+                article_list:result
+          });
+        });
+      });
+    });
+  });
+});
 
 
 // router.get('/main',function(req,res,next) {
@@ -196,49 +196,25 @@ router.post('/reset',function(req,res,next){
 // });
 
 
-router.get('/main',function(req,res,next) {
-  req.getConnection(function(errConn,connection) {
-    if(errConn) {
-      console.error('connection error: ', errConn);
-      return next(errConn);
-    }
-    var job_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-    connection.query(job_sql,['求职实习信息','求职技巧','求职经验','求职其他'],function(errQuery,result1) {
-      if(errQuery) {
-        console.error('query error: ', errConn);
-        return next(errQuery);
-      }
 
-        var study_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-      connection.query(study_sql,['读研考研经验','读研保研经验','读研真题回忆','读研其他'],function(errQuery,result2) {
-        if(errQuery) {
-        console.error('query error: ', errConn);
-        return next(errQuery);
-          }
-        var aboard_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-        connection.query(aboard_sql,['出国之路','出国课程专业','出国其他'],function(errQuery,result3) {
-          if(errQuery) {
-                console.error('query error: ', errConn);
-                return next(errQuery);
-              }
-              var result=[result1,result2,result3];
-              console.log(result);
-                article_list:result
-          });
-        });
-      });
-    });
-  });
-});
-
-
+// 右边部分
 router.get('/right',function(req,res,next) {
   req.getConnection(function(errConn,connection) {
     if(errConn) {
       conole.log("connection error:",errConn);
       return next(errConn);
     }
-    var sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
+    var sql='SELECT article_title,article_id FROM articles WHERE article_type = ? ORDER BY article_time DESC LIMIT 0,5';
+    connection.query(sql,['公告'],function(errQuery,result) {
+      if(errQuery) {
+        console.error("query err:",errQuery);
+        return next(errQuery);
+      }
+      console.log("右边部分的result:",result);
+      res.json({
+        article_list:result,
+      });
+    })
   })
 })
 
