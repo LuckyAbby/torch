@@ -65,9 +65,9 @@ router.post('/comment',function(req,res) {
       return next(errConn);
     }
   var sql='insert into comments set ?';
-  connection.query(sql,[data],function(errQuery,result) {
+  connection.query(sql,[data],function(errQuery,result,next) {
     if(errQuery) {
-      console.error('query error: ', errConn);
+      console.error('query error: ', errQuery);
       return next(errQuery);
     }
     return res.json({
@@ -95,7 +95,7 @@ router.post('/support',function(req,res,next) {
     support_flag:supportFlag,
     support_time:new Date(),
   };
-  console.log("data is:",data);
+  // console.log("data is:",data);
   req.getConnection(function(errConn,connection) {
     if(errConn) {
       console.error('connection error: ', errConn);
