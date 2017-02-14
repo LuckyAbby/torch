@@ -48,7 +48,7 @@
             <% article_list[2].forEach(function(item) { %>
               <li><a href="/article?article_id=<%= item.article_id %>"><%= item.article_title %></a></li>
             <% }) %>
-          </ul>  
+          </ul>
         </div>
 				<img src="images/main/abroad.jpg" />
 			</div>
@@ -59,6 +59,7 @@
       <!-- footer部分 -->
    <% include _footer.ejs %>
    <script type="text/javascript" src="/javascripts/main.js"></script>
+   <script src="/javascripts/right.js"></script>
    <script type="text/javascript">
     var article_list='<%= article_list %>';
    </script>
