@@ -205,6 +205,7 @@ router.get('/right',function(req,res,next) {
       return next(errConn);
     }
     var sql='SELECT article_title,article_id FROM articles WHERE article_type = ? ORDER BY article_time DESC LIMIT 0,5';
+    var sql_hotpoint='select article_title,article_id FROM articles WHERE article'
     connection.query(sql,['公告'],function(errQuery,result) {
       if(errQuery) {
         console.error("query err:",errQuery);
