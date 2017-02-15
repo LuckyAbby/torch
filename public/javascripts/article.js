@@ -81,6 +81,7 @@ function comment() {
 
 
 var supportFlag=false;
+var supportCount=$('supportCount');
 //点赞的函数
 function support() {
   var url=location.href;
@@ -96,13 +97,13 @@ function support() {
       if(xmlHttp.status===200) {
         var obj=JSON.parse(xmlHttp.responseText);
         if(obj['code']===1001) {
-          alert('请您先登陆再评论');
+          alert('请您先登陆再点赞');
           window.location.href="http://localhost:3004";
         }
         if(obj['code']===0) {
           $('praise_img').src="/images/article/praised.jpg";
           supportFlag=true;
-          $('supportCount').innerHTML=obj['supportCount'];
+          supportCount.innerHTML=parseInt(supportCount.innerHTML)+1;
         }
       }
     }
@@ -128,14 +129,13 @@ function cancelSupport() {
       if(xmlHttp.status===200) {
         var obj=JSON.parse(xmlHttp.responseText);
         if(obj['code']===1001) {
-          alert('请您先登陆再评论');
+          alert('请您先登陆再点赞');
           window.location.href="http://localhost:3004";
         }
-        if(obj['code']===1) {
+        if(obj['code']===0) {
           $('praise_img').src="/images/article/praise.jpg";
           supportFlag=false;
-          $('supportCount').innerHTML=obj['supportCount'];
-          // console.log('supportFlag',supportFlag);
+            supportCount.innerHTML=parseInt(supportCount.innerHTML)-1;
         }
       }
     }
@@ -145,48 +145,43 @@ function cancelSupport() {
 }
 
 
-//加载页面的时候就显示出评论的数目
-// function displayCount() {
-//   var url=location.href;
-//   var article_id=url.substring(url.indexOf("=")+1,url.length);
-//   var data = {
-//     article_id:article_id,
-//     support:false,
-//   }
-//   var xmlHttp=initAjax();
-//   xmlHttp.open('POST','/users/support',true);
-//   xmlHttp.onreadystatechange=function (){
-//     if(xmlHttp.readyState===4) {
-//       if(xmlHttp.status===200) {
-//         var obj=JSON.parse(xmlHttp.responseText);
-//         if(obj['code']===1001) {
-//           alert('请您先登陆再评论');
-//           window.location.href="http://localhost:3004";
-//         }
-//         if(obj['code']===1) {
-//           $('praise_img').src="/images/article/praise.jpg";
-//           supportFlag=false;
-//           $('supportCount').innerHTML=obj['supportCount'];
-//           // console.log('supportFlag',supportFlag);
-//         }
-//       }
-//     }
-//   }
-//   xmlHttp.setRequestHeader("Content-Type","application/json");
-//   xmlHttp.send(JSON.stringify(data));
-// }
+// 加载页面的时候就显示出点赞的数目
+function displaySupportCount() {
+  var url=location.href;
+  var article_id=url.substring(url.indexOf("=")+1,url.length);
+  var xmlHttp=initAjax();
+  xmlHttp.open('GET','/users/supportCount?article_id='+article_id,true);
+  xmlHttp.onreadystatechange=function (){
+    if(xmlHttp.readyState===4) {
+      if(xmlHttp.status===200) {
+        var obj=JSON.parse(xmlHttp.responseText);
+        if(obj['code']===1001) {
+          alert('请您先登陆再点赞');
+          window.location.href="http://localhost:3004";
+        }
+        if(obj['code']===0) {
+          supportCount.innerHTML=obj['supportCount'];
+        }
+      }
+    }
+  }
+  xmlHttp.send(null);
+}
 
 
-addEventHandler(commentBtn,'click',comment);
-addEventHandler(clearBtn,'click',function() {
-  $('commit_content').value="";
-});
-addEventHandler($('praise_img'),'click',support);
-addEventHandler($('praise_img'),'click',function() {
-  if(supportFlag===false) {
-    support();
-  }
-  else {
-    cancelSupport();
-  }
-});
+window.onload=function() {
+  displaySupportCount();
+  addEventHandler(commentBtn,'click',comment);
+  addEventHandler(clearBtn,'click',function() {
+    $('commit_content').value="";
+  });
+  addEventHandler($('praise_img'),'click',support);
+  addEventHandler($('praise_img'),'click',function() {
+    if(supportFlag===false) {
+      support();
+    }
+    else {
+      cancelSupport();
+    }
+  });
+}
