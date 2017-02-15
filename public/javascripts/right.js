@@ -4,19 +4,6 @@ function $(id) {
 }
 
 
-//封装绑定事件的函数
-function addEventHandler(ele,type,handler) {
-  if(ele.addEventListener) {
-    ele.addEventListener(type,handler,false);
-  }
-  else if(element.attachEvent) {
-    ele.attachEvent("on"+type,handler);
-  }
-  else {
-    ele["on"+type]=handler;
-  }
-}
-
 function initAjax() {
   var xmlHttp=false;
   if(window.XMLHttpRequest) {
@@ -36,6 +23,8 @@ function initAjax() {
   return xmlHttp;
 }
 
+
+//获得右边部分的函数
 function getRight() {
   var xmlHttp=initAjax();
   xmlHttp.open("GET","/right",true);
@@ -48,10 +37,9 @@ function getRight() {
 
         var text="";
         for(var i in obj.article_list) {
-        
-
+      text+='<li><a href="/article?article_id='+obj.article_list[i].article_id+'"'+">"+obj.article_list[i].article_title+'</a></li>';
         }
-
+        $("container_first").innerHTML=text;
       }
     }
   }
