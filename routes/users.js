@@ -79,67 +79,161 @@ router.post('/comment',function(req,res) {
 });
 
 
-router.post('/support',function(req,res,next) {
+//把点赞和取消点赞放在一个路由里面
+
+// router.post('/support',function(req,res,next) {
+//   if(!req.session.user) {
+//   res.json({
+//       code: 1001,
+//       message: '未登录',
+//     });
+//   }
+//   var article_id=req.body.article_id;
+//   var supportFlag=req.body.support;
+//   var student_id=req.session.user.student_id;
+//   var data = {
+//     article_id,
+//     student_id,
+//     support_flag:supportFlag,
+//     support_time:new Date(),
+//   };
+//   // console.log("data is:",data);
+//   req.getConnection(function(errConn,connection) {
+//     if(errConn) {
+//       console.error('connection error: ', errConn);
+//       return next(errConn);
+//     }
+//     var supportSql='insert  into support set ?';
+//     var supportSqlCount='select count(*) as count from support where support_flag=? and article_id=?';
+//     var cancelSupportSql='insert into support set ?';
+//
+//     var sql = '';
+//     if  (supportFlag===true) {
+//       sql=supportSql;
+//     }
+//     else {
+//       sql=cancelSupportSql;
+//     }
+//
+//
+//     connection.query(sql,[data],function(errQuery,result1) {
+//       if(errQuery) {
+//         console.error('query error: ', errQuery);
+//         return next(errQuery);
+//       }
+//       connection.query(supportSqlCount,['1',article_id],function(errQuery,result2) {
+//         if(errQuery) {
+//           console.error("query error",errQuery);
+//           return next(errQuery);
+//         }
+//         connection.query(supportSqlCount,['0',article_id],function(errQuery,result3) {
+//           if(errQuery) {
+//             console.error("query error",errQuery);
+//             return next(errQuery);
+//           }
+//           var result=result2[0].count-result3[0].count;
+//           return res.json({
+//             code: 0,
+//             message:'点赞成功',
+//             supportCount:result,
+//           });
+//         });
+//       });
+//     });
+//   });
+// });
+
+
+//获取页面的点赞数目的路由
+router.get('/supportCount',function(req,res,next) {
   if(!req.session.user) {
-  res.json({
-      code: 1001,
-      message: '未登录',
+    res.json({
+      code:1001,
+      message:用户未登录,
     });
   }
-  var article_id=req.body.article_id;
-  var supportFlag=req.body.support;
+  var article_id=req.query.article_id;
   var student_id=req.session.user.student_id;
-  var data = {
-    article_id,
-    student_id,
-    support_flag:supportFlag,
-    support_time:new Date(),
-  };
-  // console.log("data is:",data);
   req.getConnection(function(errConn,connection) {
     if(errConn) {
-      console.error('connection error: ', errConn);
+      console.log("errConn:",errConn);
       return next(errConn);
     }
-    var supportSql='insert  into support set ?';
     var supportSqlCount='select count(*) as count from support where support_flag=? and article_id=?';
-    var cancelSupportSql='insert into support set ?';
-
-    var sql = '';
-    if  (supportFlag===true) {
-      sql=supportSql;
-    }
-    else {
-      sql=cancelSupportSql;
-    }
 
 
-    connection.query(sql,[data],function(errQuery,result1) {
+// 还需查询这个任之前时候已经点过赞 点过的话就直接要显示已经赞过的图片而不是未点赞的图片
+
+  var supportFlag='select support_flag from support where article_id = ? and student_id = ?';
+
+    connection.query(supportSqlCount,['1',article_id],function (errQuery,result1) {
       if(errQuery) {
-        console.error('query error: ', errQuery);
+        console.log("errQuery:",errQuery);
         return next(errQuery);
       }
-      connection.query(supportSqlCount,['1',article_id],function(errQuery,result2) {
+      connection.query(supportSqlCount,['0',article_id],function (errQuery,result2) {
         if(errQuery) {
-          console.error("query error",errQuery);
+          console.log("errQuery:",errQuery);
           return next(errQuery);
         }
-        connection.query(supportSqlCount,['0',article_id],function(errQuery,result3) {
+        var result=result1[0].count-result2[0].count;
+        connection.query(supportFlag,[article_id,student_id],function(errQuery,result3) {
           if(errQuery) {
-            console.error("query error",errQuery);
+            console.error("errQuery:",errQuery);
             return next(errQuery);
           }
-          var result=result2[0].count-result3[0].count;
-          return res.json({
-            code: 0,
-            message:'点赞成功',
-            supportCount:result,
+          console.log(result3[0]);
+        })
+
+
+        return res.json({
+          code: 0,
+          message:'查询成功',
+          supportCount:result,
           });
-        });
-      });
-    });
-  });
-});
+      })
+    })
+  })
+})
+
+
+//点赞的路由
+router.post('/support',function(req,res,next) {
+  if(!req.session.user) {
+    res.json({
+      code:1001,
+      message:'该用户未登录',
+    })
+  }
+  var article_id=req.body.article_id;
+  var student_id=req.session.user.student_id;
+  var support_flag=req.body.support;
+  var data={
+    student_id,
+    article_id,
+    support_flag,
+    support_time:new Date(),
+  }
+  req.getConnection(function(errConn,connection) {
+    if(errConn) {
+      console.error("errConn:",errConn);
+      return next(errConn);
+    }
+    var sql="insert into support set ?";
+    connection.query(sql,[data],function(errQuery,result){
+      if(errQuery) {
+        console.error("errQuery :",errQuery);
+        return next(errQuery);
+      }
+      res.json({
+        code:0,
+        message:'点赞成功',
+      })
+    })
+  })
+})
+
+
 
 
 module.exports = router;
