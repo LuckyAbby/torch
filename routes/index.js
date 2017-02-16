@@ -205,16 +205,25 @@ router.get('/right',function(req,res,next) {
       return next(errConn);
     }
     var sql='SELECT article_title,article_id FROM articles WHERE article_type = ? ORDER BY article_time DESC LIMIT 0,5';
-    var sql_hotpoint='select article_title,article_id FROM articles WHERE article';
-    connection.query(sql,['公告'],function(errQuery,result) {
+    var sql_hotpoint='SELECT article_title,article_id FROM articles ORDER BY  article_clicks DESC LIMIT 0,5';
+    connection.query(sql,['公告'],function(errQuery,result1) {
       if(errQuery) {
         console.error("query err:",errQuery);
         return next(errQuery);
       }
-      console.log("右边部分的result:",result);
-      res.json({
-        article_list:result,
-      });
+      console.log("右边部分的公告的result1:",result1);
+      connection.query(sql_hotpoint,function(errQuery,result2) {
+        if(errQuery) {
+          console.error("query error:",errQuery);
+          return next(errQuery);
+        }
+        console.log("右边部分的热点推荐的result2:",result2);
+        res.json({
+          article_announcement:result1,
+          article_hot:result2,
+        });
+      })
+
     })
   })
 })
@@ -270,12 +279,13 @@ router.get('/list',function(req,res,next){
 
 
 // localhost:3004/article?article_id=40
+// var article_clicks=0;
 router.get('/article', function(req, res,next) {
   if(!req.session.user) {
     return res.redirect('/');
   }
   const article_id = req.query.article_id;
-
+  // article_clicks=article_clicks+1;
   req.getConnection(function(errConn,connection) {
     if(errConn) {
       console.error('connection error: ', errConn);
@@ -285,19 +295,29 @@ router.get('/article', function(req, res,next) {
 'LEFT JOIN comments ' +
 'on articles.article_id=comments.article_id ' +
 'where articles.article_id=?';
-    connection.query(sql,[article_id],function(errQuery,result) {
+const sql_add='update articles set article_clicks=article_clicks+1 where article_id=?';
+    connection.query(sql,[article_id],function(errQuery,result1) {
       if(errQuery) {
         console.error('query error: ', errQuery);
         return next(errQuery);
       }
-      console.log("result:"+result);
-      console.log("result[0]"+result[0]);
-      if(result.length===0) {
+      if(result1.length===0) {
         res.render('error');
       }
-      res.render('article',{
-        articles: result,
-      });
+      connection.query(sql_add,[article_id],function(errQuery,result2) {
+        if(errQuery) {
+          console.error("query error:",errQuery);
+          return next(errQuery);
+        }
+        res.render('article',{
+          articles:result1,
+
+        });
+      })
+      // res.render('article',{
+      //   articles: result,
+      //   article_clicks,
+      // });
     });
   });
 });
