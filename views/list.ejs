@@ -10,15 +10,21 @@
     <!--导航栏信息 -->
     <% include _nav.ejs %>
     <div id="main">
-    <!-- <div id="more">点击加载更多</div> -->
     <% list.forEach(function(item) {
-    %> <div class="article_container">
-      <h2><a href="/article?article_id=<%= item.article_id %>"><%= item.article_title %></a></h2>
-      <div>点赞评论信息</div>
-      <div class="article_content">
-        <%= item.article_content.substring(0,120) %>
-      </div>
-    </div>
+      %> <article class="article">
+        <div class="article_inner">
+          <header class="article_header">
+            <h2><a href="/article?article_id=<%= item.article_id %>"><%= item.article_title %></a></h2>
+          </header>
+          <div class="article_entry">
+            <p><%= item.article_content.substring(0,120) %></p>
+            <p class="article_more">More > ></p>
+          </div>
+          <div class="article_info">
+            发表时间 作者 点赞数目
+          </div>
+        </div>
+      </article>
     <% })%>
     <div id="pageSelect">
       <% if (hasPrev) { %>
