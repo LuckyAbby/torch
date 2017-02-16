@@ -33,13 +33,18 @@ function getRight() {
       if(xmlHttp.status===200) {
         var obj=JSON.parse(xmlHttp.responseText);
         console.log(obj);
-        console.log(obj["article_list"]);
-
-        var text="";
-        for(var i in obj.article_list) {
-      text+='<li><a href="/article?article_id='+obj.article_list[i].article_id+'"'+">"+obj.article_list[i].article_title+'</a></li>';
+        console.log(obj["article_announcement"]);
+        console.log(obj['article_hot']);
+        var text_announcement="";
+        var text_hot="";
+        for(var i in obj.article_announcement) {
+      text_announcement+='<li><a href="/article?article_id='+obj.article_announcement[i].article_id+'"'+">"+obj.article_announcement[i].article_title+'</a></li>';
         }
-        $("container_first").innerHTML=text;
+        for(var i in obj.article_hot) {
+      text_hot+='<li><a href="/article?article_id='+obj.article_hot[i].article_id+'"'+">"+obj.article_hot[i].article_title+'</a></li>';
+        }
+        $("container_first").innerHTML=text_announcement;
+        $('container_second').innerHTML=text_hot;
       }
     }
   }
