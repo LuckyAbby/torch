@@ -159,6 +159,15 @@ function displaySupportCount() {
           alert('请您先登陆再点赞');
           window.location.href="http://localhost:3004";
         }
+        if(obj['status']===0) {
+          console.log("11111");
+          $('praise_img').src="/images/article/praise.jpg";
+          supportFlag=false;
+        }
+        else {
+          $('praise_img').src="/images/article/praised.jpg";
+          supportFlag=true;
+        }
         if(obj['code']===0) {
           supportCount.innerHTML=obj['supportCount'];
         }
@@ -167,6 +176,16 @@ function displaySupportCount() {
   }
   xmlHttp.send(null);
 }
+
+
+//显示评论点赞以及点击量的数目
+// function getMessage() {
+//
+// }
+
+
+
+
 
 
 window.onload=function() {
