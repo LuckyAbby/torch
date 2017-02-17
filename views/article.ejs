@@ -4,18 +4,52 @@
     <meta charset="utf-8">
     <title>文章</title>
     <link rel="stylesheet" href="/stylesheets/base.css" media="screen" title="no title">
-    <link rel="stylesheet" href="/stylesheets/list.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/stylesheets/article.css" media="screen" title="no title">
   </head>
   <body>
     <!--导航栏信息 -->
     <% include _nav.ejs %>
     <!--文章信息 -->
     <div id="main">
+    <article class="article">
+    <div class="header_container">
+    <header class="article_title">
     <h1><%= articles[0].article_title %></h1>
-    <div id="article_message"> 点赞评论信息 </div>
+    </header>
+    <div class="article_info">
+      <div>
+      <img src="/images/list/time.png">
+        <span><%= articles[0].article_time.toString().substring(4,15) %>
+        </span>
+      </div>
+      <div><img src="/images/list/author.png">
+        <span>  <%= articles[0].student_name %></span>
+      </div>
+    </div>
+    </div>
     <div id="article_content">
     <%= articles[0].article_content %>
     </div>
+    </article>
+
+    <div id="comment_container" class="comment_container">
+      <div id="form_container" class="form_container">
+        <form class="" action="index.html" method="post">
+
+        </form>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
     <div id="mesg_box">
       <div id="">
         <ul>
