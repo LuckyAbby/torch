@@ -232,7 +232,7 @@ router.get('/right',function(req,res,next) {
 router.get('/list',function(req,res,next){
   var type=req.query.type;
   var page = req.query.page || 1;
-  var everyPageNumber = 4;
+  var everyPageNumber = 3;
   var start = everyPageNumber*(page-1);
   req.getConnection(function(errConn,connection) {
     if(errConn) {
@@ -242,7 +242,9 @@ router.get('/list',function(req,res,next){
     // 查询总条数
     // select count(*) from articles where article_type=?;
     // 计算有多少页
-    var sqlArticle='select article_title,article_content,article_id from articles where article_type=? order by article_id desc limit ?,?';
+    // var sqlArticle='select article_title,article_content,article_id from articles where article_type=? order by article_id desc limit ?,?';
+    var sqlArticle='select article_title,article_content,article_id,article_clicks,login.student_name,article_time from articles left join login on articles.student_id = login.student_id  where article_type=? order by article_id desc limit ?,?';
+
     connection.query(sqlArticle,[type, start, everyPageNumber],function(errQuery,result1) {
       if(errQuery) {
         console.error('query error: ', errQuery);
@@ -255,14 +257,14 @@ router.get('/list',function(req,res,next){
           console.error('error',errQuery)
           return next(errQuery);
         }
-        console.log('result2:',result2);
+        // console.log('result2:',result2);
         var allArticleNumber = result2[0].count;
         var allPageNumber=parseInt(allArticleNumber/everyPageNumber, 10);
         if(allArticleNumber%everyPageNumber!==0) {
           allPageNumber += 1;
         }
-        console.log('page: ', page);
-        console.log('allPageNumber', allPageNumber);
+        // console.log('page: ', page);
+        // console.log('allPageNumber', allPageNumber);
         var hasPrev = page > 1 ? true : false;
         var hasNext = page < allPageNumber ? true : false;
         res.render('list',{
@@ -279,22 +281,17 @@ router.get('/list',function(req,res,next){
 
 
 // localhost:3004/article?article_id=40
-// var article_clicks=0;
 router.get('/article', function(req, res,next) {
   if(!req.session.user) {
     return res.redirect('/');
   }
   const article_id = req.query.article_id;
-  // article_clicks=article_clicks+1;
   req.getConnection(function(errConn,connection) {
     if(errConn) {
       console.error('connection error: ', errConn);
       return next(errConn);
     }
-    const sql = 'select * from articles ' +
-'LEFT JOIN comments ' +
-'on articles.article_id=comments.article_id ' +
-'where articles.article_id=?';
+const sql='select * from ( articles LEFT JOIN comments ON articles.article_id=comments.article_id) LEFT JOIN login ON articles.student_id=login.student_id WHERE articles.article_id=?';
 const sql_add='update articles set article_clicks=article_clicks+1 where article_id=?';
     connection.query(sql,[article_id],function(errQuery,result1) {
       if(errQuery) {
@@ -313,7 +310,7 @@ const sql_add='update articles set article_clicks=article_clicks+1 where article
           articles:result1,
 
         });
-      })
+      });
       // res.render('article',{
       //   articles: result,
       //   article_clicks,
