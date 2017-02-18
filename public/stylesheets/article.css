@@ -1,0 +1,46 @@
+#main{
+	/*padding: 20px 40px;*/
+	width: 640px;
+	background-color: white;
+}
+/*右边侧边栏的样式*/
+.right-first{
+	top: 120px;
+	left: 857px;
+
+}
+.right-second{
+	top: 385px;
+	left: 857px;
+}
+.right-thrid {
+top: 650px;
+left: 857px;
+}
+/*主题文章的样式*/
+.header_container {
+    border-left: 5px solid #d4d4d4;
+}
+
+
+.article_title {
+  padding: 30px 20px 20px 37px;
+  color:#696969;
+}
+
+
+.article_info {
+  margin: 0px 20px 0px 25px;
+  border-top: 1px dashed #d4d4d4;
+  border-bottom: 1px solid #d4d4d4;
+  color:#696969;
+}
+.article_info div {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+#article_content {
+  padding: 20px 20px 10px 42px;
+  line-height: 1.5em;
+}
