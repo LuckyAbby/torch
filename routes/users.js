@@ -174,7 +174,7 @@ router.post('/support',function(req,res,next) {
 
 
 //获取页面点赞、评论以及点击量数目
-// router.get('/message')
+// router.get('/message')11w
 
 
 
