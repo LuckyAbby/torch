@@ -18,6 +18,9 @@ top: 650px;
 left: 857px;
 }
 /*主题文章的样式*/
+.article {
+	min-height: 600px;
+}
 .header_container {
     border-left: 5px solid #d4d4d4;
 }
@@ -43,4 +46,74 @@ left: 857px;
 #article_content {
   padding: 20px 20px 10px 42px;
   line-height: 1.5em;
+}
+
+/*评论区的样式*/
+.comment_container {
+	margin: 20px;
+	margin-left: 42px;
+}
+
+.avatar {
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: top;
+}
+
+.commit_content {
+	width: 425px;
+	height: 60px;
+	padding: 10px 15px;
+	background-color: rgb(248, 248, 248);
+	border: 1px solid #dcdcdc;
+	border-radius: 3px;
+	display: inline-block;
+	resize: none;
+	overflow: auto;
+}
+
+.emoj-container {
+	position: relative;
+}
+
+
+.btn_container {
+	float: right;
+	margin-top: -20px;
+	margin-right: 70px;
+}
+
+.btn{
+  background-color: rgb(0,114,172);
+	color:#fff;
+	border: none;
+	padding: 5px;
+	border-radius: 2px;
+	width: 60px;
+
+}
+
+/*表情框的样式*/
+.emoj {
+	display: inline;
+}
+.emoj_choose {
+	display: none;
+	 width: 500px;
+	 position: absolute;
+	 top:30px;
+	 background-color: #aaa;
+	 box-shadow: 0 0 10px #555;
+}
+
+
+.emoj_choose img {
+	  margin: 2px;
+    padding: 2px;
+    width: 25px;
+    height: 25px;
+}
+
+.emoj_choose img:hover {
+	background-color: rgb(0,114,172);
 }
