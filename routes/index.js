@@ -257,14 +257,11 @@ router.get('/list',function(req,res,next){
           console.error('error',errQuery)
           return next(errQuery);
         }
-        // console.log('result2:',result2);
         var allArticleNumber = result2[0].count;
         var allPageNumber=parseInt(allArticleNumber/everyPageNumber, 10);
         if(allArticleNumber%everyPageNumber!==0) {
           allPageNumber += 1;
         }
-        // console.log('page: ', page);
-        // console.log('allPageNumber', allPageNumber);
         var hasPrev = page > 1 ? true : false;
         var hasNext = page < allPageNumber ? true : false;
         res.render('list',{
