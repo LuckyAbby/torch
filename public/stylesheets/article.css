@@ -74,12 +74,12 @@ left: 857px;
 
 .emoj-container {
 	position: relative;
+	display: inline;
 }
 
 
 .btn_container {
 	float: right;
-	margin-top: -20px;
 	margin-right: 70px;
 }
 
@@ -94,9 +94,7 @@ left: 857px;
 }
 
 /*表情框的样式*/
-.emoj {
-	display: inline;
-}
+
 .emoj_choose {
 	display: none;
 	 width: 500px;
