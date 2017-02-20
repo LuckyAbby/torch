@@ -7,8 +7,8 @@ function $(id) {
 //封装添加事件的函数
 function addEventHandler(element,type,handler) {
   //DOM2级方法
-  if(element.addEventHandler) {
-    element.addEventHandler(type,handler,false);
+  if(element.addEventListener) {
+    element.addEventListener(type,handler,false);
   }
   //兼容IE
   else if(element.attachEvent) {
@@ -178,11 +178,17 @@ function displaySupportCount() {
 }
 
 
-//显示评论点赞以及点击量的数目
-// function getMessage() {
-//
-// }
-
+// 点击显示emoj的函数
+function showEmoj() {
+ var docFragment=document.createDocumentFragment();
+ for(var i=1;i<70;i++) {
+   var imgItem=document.createElement('img');
+   imgItem.src="/images/article/emoj/"+i+".gif";
+   imgItem.title=i;
+   docFragment.appendChild(imgItem);
+ }
+$('emoj_choose').appendChild(docFragment);
+}
 
 
 
@@ -190,11 +196,21 @@ function displaySupportCount() {
 
 window.onload=function() {
   displaySupportCount();
+  showEmoj();
+  // console.log(commentBtn);
+  addEventHandler($('emoj'),'click',function () {
+    if($('emoj_choose').display==="none") {
+      $('emoj_choose').display==="block";
+    }
+    else {
+      $('emoj_choose').display==="none";
+    }
+  });
   addEventHandler(commentBtn,'click',comment);
   addEventHandler(clearBtn,'click',function() {
     $('commit_content').value="";
   });
-  addEventHandler($('praise_img'),'click',support);
+  // addEventHandler($('praise_img'),'click',support);
   addEventHandler($('praise_img'),'click',function() {
     if(supportFlag===false) {
       support();
