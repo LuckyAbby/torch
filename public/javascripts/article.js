@@ -21,6 +21,16 @@ function addEventHandler(element,type,handler) {
 }
 
 
+//获取非行间样式的函数
+function getStyle(obj,name)
+		{
+		if(obj.currentStyle)
+		return obj.currentStyle[name];//Ie浏览器用的获取非行间样式的方法
+		else
+		return getComputedStyle(obj,null)[name];//FF以及谷歌获取非行间样式的方法
+		}
+
+
 //以浏览器兼容形式初始Ajax
 function initAjax() {
 var xmlHttp=false;
@@ -197,20 +207,20 @@ $('emoj_choose').appendChild(docFragment);
 window.onload=function() {
   displaySupportCount();
   showEmoj();
-  // console.log(commentBtn);
   addEventHandler($('emoj'),'click',function () {
-    if($('emoj_choose').display==="none") {
-      $('emoj_choose').display==="block";
+    var display=getStyle($('emoj_choose'),"display");
+    console.log(display);
+    if(display=="none") {
+      $('emoj_choose').style.display="block";
     }
     else {
-      $('emoj_choose').display==="none";
+      $('emoj_choose').style.display="none";
     }
   });
   addEventHandler(commentBtn,'click',comment);
   addEventHandler(clearBtn,'click',function() {
     $('commit_content').value="";
   });
-  // addEventHandler($('praise_img'),'click',support);
   addEventHandler($('praise_img'),'click',function() {
     if(supportFlag===false) {
       support();
