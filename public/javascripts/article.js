@@ -188,7 +188,7 @@ function displaySupportCount() {
 }
 
 
-// 点击显示emoj的函数
+// 添加emoj到emoj_container的函数
 function showEmoj() {
  var docFragment=document.createDocumentFragment();
  for(var i=1;i<70;i++) {
@@ -201,12 +201,27 @@ $('emoj_choose').appendChild(docFragment);
 }
 
 
-
-
+// 将emoj显示到评论区域中
+function displayEmoj(s) {
+  var reg=/\[emoj:\d+\]/g;
+  var result,match;
+  var allEmojs=$('emoj_choose').children.length;
+  while(match=reg.exec(s)) {
+    var emojItem=match[0].splice(7,-1);
+    if(emojItem<allEmojs) {
+      result+='<img src=/images/article/emoj/'+emojItem+'.gif>';
+    }
+    else {
+      result="";
+    }
+  }
+  return result;
+}
 
 window.onload=function() {
   displaySupportCount();
   showEmoj();
+
   addEventHandler($('emoj'),'click',function () {
     var display=getStyle($('emoj_choose'),"display");
     console.log(display);
@@ -217,6 +232,17 @@ window.onload=function() {
       $('emoj_choose').style.display="none";
     }
   });
+
+  addEventHandler($('emoj_choose'),'click',function(e) {
+    var target=e.target;
+    var commit_content=$('commit_content');
+    if(target.nodeName.toLowerCase()==="img") {
+       commit_content.focus();
+       commit_content.value=commit_content.value+"[emoj:"+target.title+"]";
+    }
+  })
+
+
   addEventHandler(commentBtn,'click',comment);
   addEventHandler(clearBtn,'click',function() {
     $('commit_content').value="";
