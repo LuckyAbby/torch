@@ -11,7 +11,7 @@
     <% include _nav.ejs %>
     <!--文章信息 -->
     <div id="main">
-    <article class="article">
+    <article class="article" id="article">
     <div class="header_container">
     <header class="article_title">
     <h1><%= articles[0].article_title %></h1>
@@ -32,11 +32,35 @@
     </div>
     </article>
 
+    <ul>
+      <li><span><img id="praise_img" src="/images/article/praise.jpg" alt="点赞" />赞(<span id="supportCount"></span>)</span></li>
+    </ul>
+
+
     <div id="comment_container" class="comment_container">
       <div id="form_container" class="form_container">
-        <form class="" action="index.html" method="post">
-
-        </form>
+        <form name="textForm" id="form">
+          <a class="avatar">
+          <img src="/userImg/avatar-1487519874252.jpg" alt="" width="35px" height="35px"/>
+          </a>
+    			<textarea class="commit_content" name="commit_content" id="commit_content" placeholder="快快说点啥吧…O(∩_∩)O"></textarea>
+          <div class="comment_choose">
+            <div class="emoj-container">
+              <a id="emoj" class="emoj">表情</a>
+              <div class="emoj_choose" id="emoj_choose">
+              </div>
+            </div>
+            <div class="btn_container">
+              <input type="button"  class="btn" id="clear" value="清空"/>
+        			<input type="button"  class="btn" id="comment"  value="发表"/>
+            </div>
+          </div>
+    		</form>
+      </div>
+      <div id="comment_list" class="comment_list">
+        <% articles.forEach(function(item) { %>
+          <p><%= item.comment_content %></p>
+        <% }) %>
       </div>
     </div>
 
@@ -50,7 +74,7 @@
 
 
 
-    <div id="mesg_box">
+    <!-- <div id="mesg_box">
       <div id="">
         <ul>
           <li><span><img id="praise_img" src="/images/article/praise.jpg" alt="点赞" />赞(<span id="supportCount"></span>)</span></li>
@@ -65,7 +89,7 @@
 			<input type="button" class="bt" id="clear" value="清空"/>
 			<input type="button" class="bt" id="comment"  value="发表"/>
 		</form>
-	</div>
+	</div> -->
   </div>
     <!--右边部分 -->
     <% include _right.ejs %>
