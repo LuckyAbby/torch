@@ -5,6 +5,7 @@
     <title>文章</title>
     <link rel="stylesheet" href="/stylesheets/base.css" media="screen" title="no title">
     <link rel="stylesheet" href="/stylesheets/article.css" media="screen" title="no title">
+
   </head>
   <body>
     <!--导航栏信息 -->
@@ -18,11 +19,12 @@
     </header>
     <div class="article_info">
       <div>
-      <img src="/images/list/time.png">
+        <i class="iconfont">&#xe603;</i>
         <span><%= articles[0].article_time.toString().substring(4,15) %>
         </span>
       </div>
-      <div><img src="/images/list/author.png">
+      <div>
+      <i class="iconfont">&#xe606;</i>
         <span>  <%= articles[0].student_name %></span>
       </div>
     </div>
@@ -48,6 +50,7 @@
             <div class="emoj-container">
               <a id="emoj" class="emoj">表情</a>
               <div class="emoj_choose" id="emoj_choose">
+
               </div>
             </div>
             <div class="btn_container">
@@ -96,6 +99,6 @@
     <div id="none" style="display:none"></div>
     <!-- footer部分 -->
     <% include _footer.ejs %>
-    <script src="./javascripts/article.js"></script>
+    <script src="/javascripts/article.js"></script>
   </body>
 </html>
