@@ -11,7 +11,7 @@ var config = require('./config/config');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var upload = require('./routes/upload');
+var setting = require('./routes/setting');
 var app = express();
 var dbOptions = {
   host: config.db.host,
@@ -44,7 +44,7 @@ app.use(session(sessionOption));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/', upload);
+app.use('/', setting);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
