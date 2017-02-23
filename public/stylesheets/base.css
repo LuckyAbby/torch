@@ -3,6 +3,30 @@
 	padding: 0;
 	font-family: "微软雅黑";
 }
+
+/*图标库*/
+@font-face {
+  font-family: 'iconfont';  /* project id 238945 */
+  src: url('//at.alicdn.com/t/font_2malu3sh0aa714i.eot');
+  src: url('//at.alicdn.com/t/font_2malu3sh0aa714i.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_2malu3sh0aa714i.woff') format('woff'),
+  url('//at.alicdn.com/t/font_2malu3sh0aa714i.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_2malu3sh0aa714i.svg#iconfont') format('svg');
+}
+
+.iconfont{
+	font-family:"iconfont";
+	font-size:18px;
+	font-style:normal;
+	-webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+  padding-left:10px
+}
+
+
+
+
 body{
 	background: url(../images/bg.jpg);
 }
