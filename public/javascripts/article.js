@@ -204,15 +204,16 @@ $('emoj_choose').appendChild(docFragment);
 // 将emoj显示到评论区域中
 function displayEmoj(s) {
   var reg=/\[emoj:\d+\]/g;
-  var result,match;
+  var result=s;
+  var match;
   var allEmojs=$('emoj_choose').children.length;
   while(match=reg.exec(s)) {
     var emojItem=match[0].splice(7,-1);
     if(emojItem<allEmojs) {
-      result+='<img src=/images/article/emoj/'+emojItem+'.gif>';
+      s.replace(match[0],'<img src=/images/article/emoj/'+emojItem+'.gif>');
     }
     else {
-      result="";
+      result=s;
     }
   }
   return result;
