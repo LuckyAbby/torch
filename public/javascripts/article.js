@@ -72,7 +72,7 @@ function comment() {
           var obj=JSON.parse(xmlHttp.responseText);
           if(obj['code']===1001) {
             alert('请您先登录再进行评论');
-            window.location.href='http://localhost:3004/';
+            window.location.href='/';
           }
           if(obj['code']===0) {
            $('commit_content').value="";
@@ -108,7 +108,7 @@ function support() {
         var obj=JSON.parse(xmlHttp.responseText);
         if(obj['code']===1001) {
           alert('请您先登陆再点赞');
-          window.location.href="http://localhost:3004";
+          window.location.href="/";
         }
         if(obj['code']===0) {
           $('praise_img').src="/images/article/praised.jpg";
@@ -140,7 +140,7 @@ function cancelSupport() {
         var obj=JSON.parse(xmlHttp.responseText);
         if(obj['code']===1001) {
           alert('请您先登陆再点赞');
-          window.location.href="http://localhost:3004";
+          window.location.href="/";
         }
         if(obj['code']===0) {
           $('praise_img').src="/images/article/praise.jpg";
@@ -167,7 +167,7 @@ function displaySupportCount() {
         var obj=JSON.parse(xmlHttp.responseText);
         if(obj['code']===1001) {
           alert('请您先登陆再点赞');
-          window.location.href="http://localhost:3004";
+          window.location.href="/";
         }
         if(obj['status']===0) {
           console.log("11111");
