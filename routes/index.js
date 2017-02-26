@@ -53,7 +53,7 @@ router.post('/login',function(req,res,next) {
       // const str = 'aaa' + 'bbb' + res;
       // const str = `aaabbb${res}`
       return res.redirect('/main');
-      }
+    }
       message = encodeURI('密码错误');
       return res.redirect(`/index?message=${message}`);
     })

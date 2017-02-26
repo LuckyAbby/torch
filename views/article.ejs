@@ -48,7 +48,8 @@
     			<textarea class="commit_content" name="commit_content" id="commit_content" placeholder="快快说点啥吧…O(∩_∩)O"></textarea>
           <div class="comment_choose">
             <div class="emoj-container">
-              <a id="emoj" class="emoj">表情</a>
+              <!-- <a id="emoj" class="emoj">表情</a> -->
+               <a id="emoj" class="emoj"><i class="iconfont">&#xe611;</i></a>
               <div class="emoj_choose" id="emoj_choose">
 
               </div>
@@ -61,10 +62,33 @@
     		</form>
       </div>
       <div id="comment_list" class="comment_list">
+        <%
+        function displayEmoj(s) {
+          var reg=/\[emoj:\d+\]/g;
+          var result=s;
+          var match;
+          var allEmojs=69;
+          while(match=reg.exec(s)) {
+            var startIndex=match[0].indexOf(':')+1;
+            var endIndex=match[0].indexOf(']');
+            var emojItem=match[0].substring(startIndex,endIndex);
+            if(emojItem<allEmojs) {
+            result=s.replace(match[0],'<img src=/images/article/emoj/'+emojItem+'.gif>');
+            }
+            else {
+              result=s;
+            }
+          }
+          return result;
+        }
+
+         %>
         <% articles.forEach(function(item) { %>
-          <p><%= item.comment_content %></p>
+        <div id="<%= item.comment_id %>">
+          <p><%- displayEmoj(item.comment_content) %></p>
+          </div>
         <% }) %>
-      </div>
+
     </div>
 
 
