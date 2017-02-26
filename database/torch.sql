@@ -10,13 +10,13 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2017-02-05 22:42:12
+Date: 2017-02-26 19:52:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
 
 -- ----------------------------
--- Table structure for articles
+-- Table structure for `articles`
 -- ----------------------------
 DROP TABLE IF EXISTS `articles`;
 CREATE TABLE `articles` (
@@ -24,17 +24,15 @@ CREATE TABLE `articles` (
   `article_title` varchar(255) DEFAULT NULL,
   `article_content` text,
   `article_clicks` int(11) DEFAULT '0',
-  `support_number` int(11) DEFAULT '0',
-  `oppose_number` int(11) DEFAULT '0',
-  `comments_number` int(11) DEFAULT '0',
   `student_id` int(11) DEFAULT NULL,
   `article_type` varchar(255) DEFAULT NULL,
   `article_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`article_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
+
 
 -- ----------------------------
--- Table structure for comments
+-- Table structure for `comments`
 -- ----------------------------
 DROP TABLE IF EXISTS `comments`;
 CREATE TABLE `comments` (
@@ -45,10 +43,12 @@ CREATE TABLE `comments` (
   `comment_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `parent_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`comment_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
+
+
 
 -- ----------------------------
--- Table structure for login
+-- Table structure for `login`
 -- ----------------------------
 DROP TABLE IF EXISTS `login`;
 CREATE TABLE `login` (
@@ -58,24 +58,13 @@ CREATE TABLE `login` (
   `id_card` char(255) NOT NULL,
   `major` varchar(255) DEFAULT NULL,
   `class` varchar(255) DEFAULT NULL,
-  `login_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`student_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
 
 -- ----------------------------
--- Table structure for oppose
--- ----------------------------
-DROP TABLE IF EXISTS `oppose`;
-CREATE TABLE `oppose` (
-  `oppose_id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) NOT NULL,
-  `article_id` int(11) NOT NULL,
-  `oppose_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`oppose_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Table structure for support
+-- Table structure for `support`
 -- ----------------------------
 DROP TABLE IF EXISTS `support`;
 CREATE TABLE `support` (
@@ -85,4 +74,5 @@ CREATE TABLE `support` (
   `support_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `support_flag` varchar(255) NOT NULL,
   PRIMARY KEY (`support_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=122 DEFAULT CHARSET=utf8;
+
