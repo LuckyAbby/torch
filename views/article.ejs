@@ -20,7 +20,7 @@
     <div class="article_info">
       <div>
         <i class="iconfont">&#xe603;</i>
-        <span><%= articles[0].article_time.toString().substring(4,15) %>
+        <span><%= articles[0].article_time.toLocaleString() %>
         </span>
       </div>
       <div>
@@ -46,7 +46,7 @@
           <img src="/userImg/avatar-1487519874252.jpg" alt="" width="35px" height="35px"/>
           </a>
     			<textarea class="commit_content" name="commit_content" id="commit_content" placeholder="快快说点啥吧…O(∩_∩)O"></textarea>
-          <div class="comment_choose">
+          <div class="comment_choose" id="comment_choose">
             <div class="emoj-container">
               <!-- <a id="emoj" class="emoj">表情</a> -->
                <a id="emoj" class="emoj"><i class="iconfont">&#xe611;</i></a>
@@ -62,6 +62,22 @@
     		</form>
       </div>
       <div id="comment_list" class="comment_list">
+
+
+        <!-- 显示评论的逻辑是：
+        首先 在打开一篇文章的url时候，模板引擎查询出该篇文章的所有评论
+        将所有的评论循环
+        对每一条评论
+        如果没有parent_id的话就是直接显示在comment_container区域，
+        如果有parent_id的话，先判断它的parent_id是否在数据库中还存在，如果不存在的话就直接不显示。（提供删除评论的功能，这个系统里面没有此功能）
+        如果存在的话就直接显示在那个parent_id下面的reply_comment_container区域。
+        如果新增加了评论的话直接通过函数创建div将评论加进去就不用重新刷新页面了。 -->
+
+
+        <!-- 应该是先渲染parent_id=null的comment，之后再渲染parent_id -->
+
+
+        <!--显示表情  -->
         <%
         function displayEmoj(s) {
           var reg=/\[emoj:\d+\]/g;
@@ -81,14 +97,49 @@
           }
           return result;
         }
-
          %>
-        <% articles.forEach(function(item) { %>
-        <div id="<%= item.comment_id %>">
-          <p><%- displayEmoj(item.comment_content) %></p>
-          </div>
-        <% }) %>
 
+
+         <!-- 嵌套显示评论 -->
+        <% articles.forEach(function(item) {
+          console.log("第一步：能查到这边文章的评论");
+         if(!item.parent_id) {
+           console.log("第二步：这篇文章的评论没有parent_id");
+          var that=item;
+        %>
+        <div id="comment<%= item.comment_id %>">
+
+            <div>
+              <div class="author">
+                <a href="#" class="avatar">
+                  <!--从服务器上面得到用户的头像-->
+                  <img src="/userImg/avatar-1487519874252.jpg" alt="" />
+                </a>
+                <div class="author_info">
+                  <a href="#"><%= item.student_name %></a>
+                  <div class="">
+                    <span><%= item.comment_time.toLocaleString() %></span>
+                  </div>
+                </div>
+              </div>
+              <div class="content_container">
+                <p><%- displayEmoj(item.comment_content) %></p>
+                <div class="tool">
+                  <a><i class="iconfont">&#xe647;</i></a>
+                </div>
+              </div>
+            </div>
+            <div class="reply_comment_container">
+            <% articles.forEach(function(item) {
+              if(item.parent_id==that.comment_id) {
+            %>
+              <div id="supply_comment<%= item.comment_id %>">
+                <p><a><%= item.student_name %></a><span><%- displayEmoj(item.comment_content) %></span></p>
+              </div>
+            <% }})%>
+          </div>
+          </div>
+        <% }}) %>
     </div>
 
 
