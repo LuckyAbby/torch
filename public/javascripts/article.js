@@ -219,10 +219,30 @@ function displayEmoj(s) {
   return result;
 }
 
+
+// 显示出回复评论的div
+// function displayCommentArea() {
+//   var textarea=$('commit_content').cloneNode(false);
+//   var comment_choose=$('comment_choose').cloneNode(true);
+//
+// }
+
+
 window.onload=function() {
   displaySupportCount();
   showEmoj();
-
+  var tools=document.getElementsByClassName('tool');
+  var reply_containers=document.getElementsByClassName('reply_comment_container');
+  for(var i=0;i<tools.length;i++) {
+    addEventHandler(tools[i],'click',function() {
+      console.log("执行到这里了");
+      var textarea=$('commit_content').cloneNode(false);
+      var comment_choose=$('comment_choose').cloneNode(true);
+console.log(i);
+        reply_containers[i].appendChild(textarea);
+        reply_containers.appendChild(comment_choose);
+    })
+  }
   addEventHandler($('emoj'),'click',function () {
     var display=getStyle($('emoj_choose'),"display");
     console.log(display);
