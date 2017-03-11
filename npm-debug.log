@@ -1,0 +1,35 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'D:\\node.js\\node.exe',
+1 verbose cli   'D:\\node.js\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'start' ]
+2 info using npm@3.10.8
+3 info using node@v6.8.1
+4 verbose run-script [ 'prestart', 'start', 'poststart' ]
+5 info lifecycle torch@0.0.0~prestart: torch@0.0.0
+6 silly lifecycle torch@0.0.0~prestart: no script for prestart, continuing
+7 info lifecycle torch@0.0.0~start: torch@0.0.0
+8 verbose lifecycle torch@0.0.0~start: unsafe-perm in lifecycle true
+9 verbose lifecycle torch@0.0.0~start: PATH: D:\node.js\node_modules\npm\bin\node-gyp-bin;E:\code\torch\node_modules\.bin;C:\ProgramData\Oracle\Java\javapath;C:\Program Files\Java\jdk1.8.0_91\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\110\Tools\Binn\;D:\node.js\;D:\git\Git\cmd;C:\Users\dell\AppData\Local\Microsoft\WindowsApps;C:\Users\dell\AppData\Roaming\npm
+10 verbose lifecycle torch@0.0.0~start: CWD: E:\code\torch
+11 silly lifecycle torch@0.0.0~start: Args: [ '/d /s /c', 'node ./bin/www' ]
+12 verbose stack Error: kill ENOSYS
+12 verbose stack     at exports._errnoException (util.js:1026:11)
+12 verbose stack     at process.kill (internal/process.js:172:13)
+12 verbose stack     at process.listener (D:\node.js\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:86:15)
+12 verbose stack     at emitNone (events.js:91:20)
+12 verbose stack     at process.emit (events.js:185:7)
+12 verbose stack     at processEmit (D:\node.js\node_modules\npm\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+12 verbose stack     at processEmit (D:\node.js\node_modules\npm\node_modules\npm-registry-client\node_modules\npmlog\node_modules\gauge\node_modules\signal-exit\index.js:146:32)
+12 verbose stack     at Signal.wrap.onsignal (internal/process.js:199:44)
+13 verbose cwd E:\code\torch
+14 error Windows_NT 10.0.14393
+15 error argv "D:\\node.js\\node.exe" "D:\\node.js\\node_modules\\npm\\bin\\npm-cli.js" "start"
+16 error node v6.8.1
+17 error npm  v3.10.8
+18 error code ENOSYS
+19 error errno ENOSYS
+20 error syscall kill
+21 error kill ENOSYS
+22 error If you need help, you may report this error at:
+22 error     <https://github.com/npm/npm/issues>
+23 verbose exit [ 1, true ]
