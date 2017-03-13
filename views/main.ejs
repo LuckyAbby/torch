@@ -3,14 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title><%= title %></title>
-    <link rel="stylesheet" href="./stylesheets/base.css">
-    <link rel="stylesheet" href="./stylesheets/main.css">
+    <link rel="stylesheet" href="/stylesheets/base.css">
+    <link rel="stylesheet" href="/stylesheets/main.css">
   </head>
   <body>
-
     <!--导航栏信息 -->
     <% include _nav.ejs %>
-
    <!-- 侧边栏加主体部分-->
     <div id="aside">
 			<a class="left-first" href="javascripts:void(0)">求职</a>
@@ -19,7 +17,6 @@
 		</div>
     <div id="main">
 			<div>
-
 				<img src="images/main/main_top.jpg" class="topimg"/>
 			</div>
 			<div class="part">
@@ -53,15 +50,14 @@
 				<img src="images/main/abroad.jpg" />
 			</div>
 		</div>
-
   	  <!--右边部分 -->
-   <% include _right.ejs %>
+    <% include _right.ejs %>
       <!-- footer部分 -->
-   <% include _footer.ejs %>
-   <script type="text/javascript" src="./javascripts/main.js"></script>
-   <script src="./javascripts/right.js"></script>
-   <script type="text/javascript">
+    <% include _footer.ejs %>
+    <script type="text/javascript" src="./javascripts/main.js"></script>
+    <script src="./javascripts/right.js"></script>
+    <script type="text/javascript">
     var article_list='<%= article_list %>';
-   </script>
+    </script>
   	</body>
 </html>

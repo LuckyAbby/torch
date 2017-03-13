@@ -1,51 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Torch职业生涯规划</title>
-		<meta charset="utf-8" />
-	  <!-- <link rel='stylesheet' href='/stylesheets/base.css' /> -->
-		<link rel="stylesheet" href="/stylesheets/login.css">
-</head
-<body>
-	<div id='ieCore'><span>该网站暂时还没有很好的兼容您的浏览器,请换用Google、Firefox等其他浏览器</span></div>
-	<img id='background' src="/images/login/bg.jpg"/>
-	<div id="log_in"><!--右侧登录界面-->
-		<p class="log">登录</p>
-		<p id="loginTip"><%= message %></p>
-		<form method="post" action="/login" id='loginform'><!--表单-->
-			<div class="put_in"><!--账号密码输入框-->
-				<img src="images/login/u25.png">
-				<input type="text" name="student_id" id='student_number' placeholder="学号/账号"/>
-			</div>
-			<div class="put_in" style="margin-top:-1px;"><!--账号密码输入框-->
-				<img src="images/login/u23.png">
-				<input type="password" name="password" id="password" placeholder="密码"/><br/>
-
-			</div>
-			<input type="hidden" name="referr" id='referr'/>
-			<!-- <input type="checkbox" value="记住密码" id='check'/><span class="rember">记住密码</span><span class="lost" onclick='gotoLost()'>忘记密码？</span><br/> --><!--忘记密码-->
-			<input type="submit" name="post" value="登录" class="button" id="submit_btn"/><!--提交界面-->
-			<input type="button"  value="忘记密码" class="button" id="forget_btn">
-		</form>
-
-	</div>
-	<div id="lost_pass">
-			<p class="log">重置密码</p>
-			<p id="mess"></p>
-			<p class='lost_p'><span>姓&nbsp;&nbsp;&nbsp;名</span><input type="text" name="user_name" id="user_name"/></p>
-			<p class='lost_p'><span>学&nbsp;&nbsp;&nbsp;号</span><input type="text" name="sid" id="sid" /></p>
-			<p class='lost_p'><span>身份证号</span><input type="text" name="idcard" id="idcard" /></p>
-			<p style='text-align:center'><input type="button" class="btn" value="取消" id="lost_cancle"/><input type="button" class="btn" value="提交" id="lost_submit"/></p>
-
-	</div>
-	<div id="reset_success">
-			<p class='p1'>重置成功!</p>
-			<p class='p2'>您的新密码为身份证后六位</p>
-			<input type="button" class="btn" value="点此返回登录"id="back_btn"/>
-	</div>
-	<div id="footer">
-			Torch 职业生涯规划与就业指导团队&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公众号：Torch<br/>
-联系我们：<a href="mailto:meTorch@163.com">meTorch@163.com</a>
-	</div>
- <script src="/javascripts/login.js"></script>
-</body>
+	<head>
+		<title>Torch职业生涯规划</title>
+			<meta charset="utf-8" />
+			<link rel="stylesheet" href="/stylesheets/login.css">
+	</head>
+	<body>
+		<div id='ieCore'><span>该网站暂时还没有很好的兼容您的浏览器,请换用Google、Firefox等其他浏览器</span></div>
+		<img id='background' src="/images/login/bg.jpg"/>
+		<div id="log_in"><!--右侧登录界面-->
+			<p class="log">登录</p>
+			<p id="loginTip"><%= message %></p>
+			<form method="post" action="/login" id='loginform'><!--表单-->
+				<div class="put_in"><!--账号密码输入框-->
+					<img src="images/login/u25.png">
+					<input type="text" name="student_id" id='student_number' placeholder="学号/账号"/>
+				</div>
+				<div class="put_in" style="margin-top:-1px;"><!--账号密码输入框-->
+					<img src="images/login/u23.png">
+					<input type="password" name="password" id="password" placeholder="密码"/><br/>
+				</div>
+				<input type="hidden" name="referr" id='referr'/>
+				<input type="submit" name="post" value="登录" class="button" id="submit_btn"/><!--提交界面-->
+				<input type="button"  value="忘记密码" class="button" id="forget_btn">
+			</form>
+		</div>
+		<div id="lost_pass">
+				<p class="log">重置密码</p>
+				<p id="mess"></p>
+				<p class='lost_p'><span>姓&nbsp;&nbsp;&nbsp;名</span><input type="text" name="user_name" id="user_name"/></p>
+				<p class='lost_p'><span>学&nbsp;&nbsp;&nbsp;号</span><input type="text" name="sid" id="sid" /></p>
+				<p class='lost_p'><span>身份证号</span><input type="text" name="idcard" id="idcard" /></p>
+				<p style='text-align:center'><input type="button" class="btn" value="取消" id="lost_cancle"/><input type="button" class="btn" value="提交" id="lost_submit"/></p>
+		</div>
+		<div id="reset_success">
+				<p class='p1'>重置成功!</p>
+				<p class='p2'>您的新密码为身份证后六位</p>
+				<input type="button" class="btn" value="点此返回登录"id="back_btn"/>
+		</div>
+		<div id="footer">
+				Torch 职业生涯规划与就业指导团队&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公众号：Torch<br/>
+	联系我们：<a href="mailto:meTorch@163.com">meTorch@163.com</a>
+		</div>
+	  <script src="/javascripts/login.js"></script>
+	</body>
