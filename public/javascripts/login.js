@@ -1,7 +1,3 @@
-//封装函数
-function $(id) {
-  return document.getElementById(id);
-}
 var log_in=$('log_in');
 var lost_pass=$('lost_pass');
 var submit_btn=$("submit_btn");
@@ -12,23 +8,6 @@ var lost_submit=$('lost_submit');
 var student_number=$('student_number');
 var password=$('password');
 var back_btn=$('back_btn');
-
-
-//封装绑定事件的函数
-function addEventHandler(element,type,handler) {
-  //DOM2级方法
-  if(element.addEventListener) {
-    element.addEventListener(type,handler,false);
-  }
-  //兼容IE
-  else if(element.attachEvent) {
-    element.attachEvent("on"+type,handler);
-  }
-  //DOM0级方法
-  else {
-    element["on"+type]=handler;
-  }
-}
 
 
 //点击忘记密码之后登陆框隐藏
