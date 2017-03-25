@@ -141,29 +141,13 @@
           </div>
         <% }}) %>
     </div>
-
-    <!-- <div id="mesg_box">
-      <div id="">
-        <ul>
-          <li><span><img id="praise_img" src="/images/article/praise.jpg" alt="点赞" />赞(<span id="supportCount"></span>)</span></li>
-        </ul>
-      </div>
-		<div id="mesg_title"><span>留言区</span></div>
-    <% articles.forEach(function(item) { %>
-      <p><%= item.comment_content %></p>
-    <% }) %>
-		<form name="textForm" id="form">
-			<textarea class="leave_mesg" name="commit_content" id="commit_content" placeholder="快快说点啥吧…O(∩_∩)O"></textarea>
-			<input type="button" class="bt" id="clear" value="清空"/>
-			<input type="button" class="bt" id="comment"  value="发表"/>
-		</form>
-	</div> -->
   </div>
     <!--右边部分 -->
     <% include _right.ejs %>
     <div id="none" style="display:none"></div>
     <!-- footer部分 -->
     <% include _footer.ejs %>
+    <script src="/javascripts/base.js"></script>
     <script src="/javascripts/article.js"></script>
   </body>
 </html>
