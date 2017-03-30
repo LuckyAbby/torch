@@ -1,5 +1,7 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const crypto = require('crypto');
+const async = require('async');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -24,7 +26,6 @@ router.post('/login',function(req,res,next) {
       console.error('connection error: ', errConn);
       return next(errConn);
     }
-
   var sql='select * from login where student_id=?';
   connection.query(sql,[student_id],function(errQuery, result) {
     if(errQuery) {
@@ -47,11 +48,19 @@ router.post('/login',function(req,res,next) {
         message: '用户不存在',
       });
     }
-    console.log(result[0].password);
-    if(password===result[0].password) {
+
+    // md5加盐加密
+    function md5_2(str, key) {
+      const password = crypto
+        .createHash('md5')
+        .update(`${str}${key}`)  // 这样就能避免 iloveyou 这样的密码被轻易破解。因为它加密的是 iloveyou+key
+        .digest('hex');
+      return password;
+    }
+
+    const password_salt=md5_2(password,result[0].salt);
+    if(password_salt===result[0].password) {
       req.session.user=result[0];
-      // const str = 'aaa' + 'bbb' + res;
-      // const str = `aaabbb${res}`
       return res.redirect('/main');
     }
       message = encodeURI('密码错误');
@@ -80,7 +89,6 @@ router.post('/reset',function(req,res,next){
       console.error('query error: ', errConn);
       return next(errQuery);
     }
-    console.log('result: ', result);
     if (result.length !=0 ) {
       if(result[0].student_id==student_id&&result[0].student_name==student_name&&result[0].id_card==id_card) {
         var newPassword=result[0].id_card.substring(result[0].id_card.length-6,result[0].id_card.length)
@@ -113,87 +121,87 @@ router.post('/reset',function(req,res,next){
 });
 
 
-router.get('/main',function(req,res,next) {
-  req.getConnection(function(errConn,connection) {
-    if(errConn) {
-      console.error('connection error: ', errConn);
-      return next(errConn);
-    }
-    var job_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-    connection.query(job_sql,['求职实习信息','求职技巧','求职经验','求职其他'],function(errQuery,result1) {
-      if(errQuery) {
-        console.error('query error: ', errConn);
-        return next(errQuery);
-      }
-
-        var study_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-      connection.query(study_sql,['读研考研经验','读研保研经验','读研真题回忆','读研其他'],function(errQuery,result2) {
-        if(errQuery) {
-        console.error('query error: ', errConn);
-        return next(errQuery);
-          }
-        var aboard_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-        connection.query(aboard_sql,['出国之路','出国课程专业','出国其他'],function(errQuery,result3) {
-          if(errQuery) {
-                console.error('query error: ', errConn);
-                return next(errQuery);
-              }
-              var result=[result1,result2,result3];
-              console.log(result);
-              res.render('main',{
-                title:"首页",
-                article_list:result
-          });
-        });
-      });
-    });
-  });
-});
-
-
 // router.get('/main',function(req,res,next) {
 //   req.getConnection(function(errConn,connection) {
 //     if(errConn) {
-//       console.error('connection error:' ,errConn);
+//       console.error('connection error: ', errConn);
 //       return next(errConn);
 //     }
 //     var job_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-//     var study_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-//     var aboard_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?) ORDER BY article_time DESC LIMIT 0,5';
-//     async.series([function(callback) {
-//       // callback(null,coconn);
-//       connection.query(job_sql, ['求职实习信息','求职技巧','求职经验','求职其他'],function(err, result) {
-//         if (err) {
-//           return callback(err);
-//         }
-//         callback(null, result);
-//       });
-//     },function(callback) {
-//       connection.query(study_sql,['读研考研经验','读研保研经验','读研真题回忆','读研其他'],function(err,result) {
-//         if(err) {
-//           return callback(err);
-//         }
-//         callback(null,result);
-//       });
-//     },function(callback) {
-//       connection.query(aboard_sql,['出国之路','出国课程专业','出国其他'],function(err,result) {
-//         if(err) {
-//           return callback(err);
-//         }
-//         callback(null,result);
-//       });
-//     }],function (err,result) {
-//       if(err) {
-//         console.error("query error:",err);
-//         return next(err);
+//     connection.query(job_sql,['求职实习信息','求职技巧','求职经验','求职其他'],function(errQuery,result1) {
+//       if(errQuery) {
+//         console.error('query error: ', errConn);
+//         return next(errQuery);
 //       }
-//       res.render('main',{
-//           title:"首页",
-//           article_list:result
+//
+//         var study_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
+//       connection.query(study_sql,['读研考研经验','读研保研经验','读研真题回忆','读研其他'],function(errQuery,result2) {
+//         if(errQuery) {
+//         console.error('query error: ', errConn);
+//         return next(errQuery);
+//           }
+//         var aboard_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?) ORDER BY article_time DESC LIMIT 0,5';
+//         connection.query(aboard_sql,['出国之路','出国课程专业','出国其他'],function(errQuery,result3) {
+//           if(errQuery) {
+//                 console.error('query error: ', errConn);
+//                 return next(errQuery);
+//               }
+//               var result=[result1,result2,result3];
+//               console.log(result);
+//               res.render('main',{
+//                 title:"首页",
+//                 article_list:result
+//           });
+//         });
 //       });
 //     });
 //   });
 // });
+
+
+router.get('/main',function(req,res,next) {
+  req.getConnection(function(errConn,connection) {
+    if(errConn) {
+      console.error('connection error:' ,errConn);
+      return next(errConn);
+    }
+    var job_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
+    var study_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?,?) ORDER BY article_time DESC LIMIT 0,5';
+    var aboard_sql='SELECT article_title,article_id FROM articles WHERE article_type in(?,?,?) ORDER BY article_time DESC LIMIT 0,5';
+    async.series([function(callback) {
+      // callback(null,coconn);
+      connection.query(job_sql, ['求职实习信息','求职技巧','求职经验','求职其他'],function(err, result) {
+        if (err) {
+          return callback(err);
+        }
+        callback(null, result);
+      });
+    },function(callback) {
+      connection.query(study_sql,['读研考研经验','读研保研经验','读研真题回忆','读研其他'],function(err,result) {
+        if(err) {
+          return callback(err);
+        }
+        callback(null,result);
+      });
+    },function(callback) {
+      connection.query(aboard_sql,['出国之路','出国课程专业','出国其他'],function(err,result) {
+        if(err) {
+          return callback(err);
+        }
+        callback(null,result);
+      });
+    }],function (err,result) {
+      if(err) {
+        console.error("query error:",err);
+        return next(err);
+      }
+      res.render('main',{
+          title:"首页",
+          article_list:result
+      });
+    });
+  });
+});
 
 
 
@@ -211,19 +219,16 @@ router.get('/right',function(req,res,next) {
         console.error("query err:",errQuery);
         return next(errQuery);
       }
-      console.log("右边部分的公告的result1:",result1);
       connection.query(sql_hotpoint,function(errQuery,result2) {
         if(errQuery) {
           console.error("query error:",errQuery);
           return next(errQuery);
         }
-        console.log("右边部分的热点推荐的result2:",result2);
         res.json({
           article_announcement:result1,
           article_hot:result2,
         });
-      })
-
+      });
     })
   })
 })
@@ -250,7 +255,6 @@ router.get('/list',function(req,res,next){
         console.error('query error: ', errQuery);
         return next(errQuery);
       }
-      console.log('result1',result1);
       var sqlPageNumber='select count(*) as count from articles where article_type=?';
       connection.query(sqlPageNumber,[type],function(errQuery,result2){
         if(errQuery) {
@@ -308,10 +312,6 @@ const sql_add='update articles set article_clicks=article_clicks+1 where article
 
         });
       });
-      // res.render('article',{
-      //   articles: result,
-      //   article_clicks,
-      // });
     });
   });
 });
@@ -321,4 +321,22 @@ const sql_add='update articles set article_clicks=article_clicks+1 where article
 router.get('/about',function(req,res,next) {
   res.render('about');
 })
+
+router.get('/test',function(req, res, next) {
+  const {query, connect }  = require('./promiseDB');
+  // connect db
+  connect(req)
+    .then((connection) => {
+      const sql = 'select * from user where id = ?';
+      const params = [1];
+      return query(connection, sql, params);
+    })
+    .then((queryRes) => {
+      console.log('queryRes: ', queryRes);
+    })
+    .catch((e) => {
+
+    })
+});
+
 module.exports = router;
