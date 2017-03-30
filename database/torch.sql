@@ -58,6 +58,7 @@ CREATE TABLE `login` (
   `id_card` char(255) NOT NULL,
   `major` varchar(255) DEFAULT NULL,
   `class` varchar(255) DEFAULT NULL,
+  `salt` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`student_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
