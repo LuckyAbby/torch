@@ -5,17 +5,17 @@
 				padding-bottom:40px;
 			}
 			/*左边导航栏*/
-			#aside .left-first{
+			aside .left-first{
 				position: absolute;
 				left: 80px;
 				top: 470px;
 			}
-			#aside .left-second{
+			aside .left-second{
 				position: absolute;
 				left: 80px;
 				top: 690px;
 			}
-			#aside .left-third{
+			aside .left-third{
 				position: absolute;
 				left: 80px;
 				top: 910px;
