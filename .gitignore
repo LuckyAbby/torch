@@ -4,7 +4,7 @@ test.md
 # 忽略 IDE 配置目录
 .idea
 
-# 忽略照片
+# 忽略所有图片
 public/images
 
 node_modules
