@@ -6,9 +6,6 @@ function getRight() {
     if(xmlHttp.readyState===4) {
       if(xmlHttp.status===200) {
         var obj=JSON.parse(xmlHttp.responseText);
-        console.log(obj);
-        console.log(obj["article_announcement"]);
-        console.log(obj['article_hot']);
         var text_announcement="";
         var text_hot="";
         for(var i in obj.article_announcement) {

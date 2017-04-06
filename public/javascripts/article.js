@@ -66,7 +66,6 @@ function support() {
       }
     }
   }
-
   xmlHttp.setRequestHeader("Content-Type","application/json");
   xmlHttp.send(JSON.stringify(data));
 }
@@ -118,7 +117,6 @@ function displaySupportCount() {
           window.location.href="/";
         }
         if(obj['status']===0) {
-          console.log("11111");
           $('praise_img').src="/images/article/praise.jpg";
           supportFlag=false;
         }
@@ -138,14 +136,14 @@ function displaySupportCount() {
 
 // 添加emoj到emoj_container的函数
 function showEmoj() {
- var docFragment=document.createDocumentFragment();
- for(var i=1;i<70;i++) {
-   var imgItem=document.createElement('img');
-   imgItem.src="/images/article/emoj/"+i+".gif";
-   imgItem.title=i;
-   docFragment.appendChild(imgItem);
+  var docFragment=document.createDocumentFragment();
+  for(var i=1;i<70;i++) {
+    var imgItem=document.createElement('img');
+    imgItem.src="/images/article/emoj/"+i+".gif";
+    imgItem.title=i;
+    docFragment.appendChild(imgItem);
  }
-$('emoj_choose').appendChild(docFragment);
+  $('emoj_choose').appendChild(docFragment);
 }
 
 
@@ -183,10 +181,8 @@ window.onload=function() {
   var reply_containers=document.getElementsByClassName('reply_comment_container');
   for(var i=0;i<tools.length;i++) {
     addEventHandler(tools[i],'click',function() {
-      console.log("执行到这里了");
       var textarea=$('commit_content').cloneNode(false);
       var comment_choose=$('comment_choose').cloneNode(true);
-console.log(i);
         reply_containers[i].appendChild(textarea);
         reply_containers.appendChild(comment_choose);
     })
