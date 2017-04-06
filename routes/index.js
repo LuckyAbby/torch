@@ -4,12 +4,13 @@ const async = require('async');
 
 const router = express.Router();
 
-/* GET home page. */
+
 router.get('/', (req, res) => {
   res.render('index', { title: 'Express', message: '' });
 });
 
 
+// 首页
 router.get('/index', (req, res) => {
   const message = req.query.message;
   res.render('index', {
@@ -19,6 +20,7 @@ router.get('/index', (req, res) => {
 });
 
 
+// 登陆的页面
 router.post('/login', (req, res, next) => {
   const student_id = req.body.student_id;
   const password = req.body.password;
@@ -68,6 +70,8 @@ router.get('/reset', (req, res) => {
   res.render('index', { title: 'Express' });
 });
 
+
+// 重置密码
 router.post('/reset', (req, res, next) => {
   const student_name = req.body.student_name;
   const student_id = req.body.student_id;
@@ -119,6 +123,7 @@ router.post('/reset', (req, res, next) => {
 });
 
 
+// 主页
 router.get('/main', (req, res, next) => {
   req.getConnection((errConn, connection) => {
     if (errConn) {
@@ -192,6 +197,7 @@ router.get('/right', (req, res, next) => {
 });
 
 
+// 文章列表
 router.get('/list', (req, res, next) => {
   const type = req.query.type;
   const page = req.query.page || 1;
@@ -235,7 +241,7 @@ router.get('/list', (req, res, next) => {
 });
 
 
-// localhost:3004/article?article_id=40
+// 具体的文章页面
 router.get('/article', (req, res, next) => {
   if (!req.session.user) {
     return res.redirect('/');
