@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "async": "^2.3.0",
     "body-parser": "~1.15.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
@@ -14,15 +15,16 @@
     "express-session": "^1.15.0",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.0",
-    "uploadify": "^1.0.7"
+    "uploadify": "^1.0.7",
+    "xss": "^0.3.3"
   },
   "devDependencies": {
-  "webpack": "^2.2.1",
-  "babel-eslint": "^7.1.1",
-  "eslint": "^3.14.0",
-  "eslint-config-airbnb": "^14.0.0",
-  "eslint-plugin-import": "^2.2.0",
-  "eslint-plugin-jsx-a11y": "^3.0.2",
-  "eslint-plugin-react": "^6.9.0"
-}
+    "webpack": "^2.2.1",
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.14.0",
+    "eslint-config-airbnb": "^14.0.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^3.0.2",
+    "eslint-plugin-react": "^6.9.0"
+  }
 }

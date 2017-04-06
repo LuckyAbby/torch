@@ -1,0 +1,5 @@
+# 忽略浏览器端语法的检测
+/public/javascripts
+
+# 测试文件
+test*.js

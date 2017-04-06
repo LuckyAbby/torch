@@ -8,3 +8,6 @@ test.md
 public/images
 
 node_modules
+
+# 测试文件
+test*.js

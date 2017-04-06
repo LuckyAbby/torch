@@ -1,19 +1,19 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var mysql = require('mysql');
-var myConnection = require('express-myconnection');
-var session=require('express-session');
-var config = require('./config/config');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const mysql = require('mysql');
+const myConnection = require('express-myconnection');
+const session = require('express-session');
+const config = require('./config/config');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var setting = require('./routes/setting');
-var app = express();
-var dbOptions = {
+const index = require('./routes/index');
+const users = require('./routes/users');
+const setting = require('./routes/setting');
+const app = express();
+const dbOptions = {
   host: config.db.host,
   user: config.db.user,
   password: config.db.password,
@@ -21,7 +21,7 @@ var dbOptions = {
   database: config.db.database,
 };
 
-var sessionOption = {
+const sessionOption = {
   secret: 'abcdefghgyftdrytdty78',
   cookie: { maxAge: 60000 * 60 * 24 * 30 },
   name: 'express.sid',
@@ -48,7 +48,7 @@ app.use('/', setting);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
