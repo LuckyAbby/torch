@@ -10,7 +10,7 @@
     <% include _nav.ejs %>
     <form  action="/users/write" method="post" id="main">
       <div id="container">
-        <div class="tit"><span>标题</span> <input type="text" name="art_title" id='art_title' maxlength='30'  required value="" />
+        <div class="tit"><span>标题</span> <input type="text" name="art_title" id='art_title' maxlength='30'  required value=""/>
             <span class="star">*</span></div>
             <div class="tit">
               <span>分类</span>
@@ -50,26 +50,8 @@
       </div>
     </form>
         <% include _footer.ejs %>
-        <script src="/javascripts/base.js">
-
-        </script>
+        <script src="/javascripts/base.js"></script>
         <script>
-        var clear_btn=document.getElementById('clear_btn');
-        //封装绑定事件的函数
-        function addEventHandler(element,type,handler) {
-          //DOM2级方法
-          if(element.addEventHandler) {
-            element.addEventHandler(type,handler,false);
-          }
-          //兼容IE
-          else if(element.attachEvent) {
-            element.attachEvent("on"+type,handler);
-          }
-          //DOM0级方法
-          else {
-            element["on"+type]=handler;
-          }
-        }
         //保存文章
         function save() {
           var message='<%= message %>';

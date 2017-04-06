@@ -10,27 +10,30 @@
     <!--导航栏信息 -->
     <% include _nav.ejs %>
     <div id="main">
-    <% list.forEach(function(item) {
-      %> <article class="article">
+    <% list.forEach(function(item) {%>
+        <article class="article">
         <div class="article_inner">
           <header class="article_header">
-            <h2><a href="/article?article_id=<%= item.article_id %>"><%= item.article_title %></a></h2>
+            <h2><a href="/article?article_id=<%= item.article_id %>"><%- item.article_title %></a></h2>
           </header>
           <div class="article_entry">
             <p><%= item.article_content.substring(0,120) %></p>
             <p class="article_more"><a href="/article?article_id=<%= item.article_id %>">More > ></a></p>
           </div>
           <div class="article_info">
-            <div><img src="/images/list/time.png">
-              <span><%= item.article_time.toString().substring(4,15) %>
+            <div>
+              <i class="iconfont">&#xe603;</i>
+              <span><%= item.article_time.toLocaleString() %>
               </span>
             </div>
-            <div><img src="/images/list/author.png">
+            <div>
+            <i class="iconfont">&#xe606;</i>
               <span>  <%= item.student_name %></span>
             </div>
-              <div><img src="/images/list/praise.png">
+            <div>
+            <i class="iconfont">&#xe613;</i>
               <span>  <%= item.article_clicks %></span>
-              </div>
+            </div>
           </div>
         </div>
       </article>
