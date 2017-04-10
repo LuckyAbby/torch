@@ -1,5 +1,5 @@
 const express = require('express');
-const multer  = require('multer')
+const multer = require('multer')
 const path = require('path');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -38,7 +38,7 @@ router.post('/setting', (req, res, next) => {
 });
 
 
-router.get('/setting/information',(req, res => {
+router.get('/setting/information',(req, res) => {
   if(!req.session.user) {
   res.json({
       code: 1001,
@@ -64,6 +64,6 @@ router.get('/setting/information',(req, res => {
     });
   });
 });
-)
+
 
 module.exports = router;
